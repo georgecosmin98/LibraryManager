@@ -1,0 +1,6 @@
+-Cerinte
+-Fundamentari
+-UX
+-Integrare in alte limbaje/sisteme
+-Limbaje folosite
+-Cum face app viata mai buna 
