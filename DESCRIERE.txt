@@ -3,4 +3,10 @@
 -UX
 -Integrare in alte limbaje/sisteme
 -Limbaje folosite
+  Java:     
+	Hibernate                 				- Manipulare si lucru cu baza de date
+	Spring                    				- Managementul de dependinte
+	JUnit5     	          				- Testare
+ 	OracleDB/PostgreSQL/MongoDB(Inca nu sunt hotarat)       -Baza de date
+	JavaFX(SceneBuilder)					-GUI
 -Cum face app viata mai buna 
