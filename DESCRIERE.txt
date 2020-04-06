@@ -17,7 +17,7 @@ Potentiali clienti:
 Tipuri de useri:
 	-Administrator: -angajator,director,manager,etc care raspunde direct de bibliotecar
 	-Bibliotecar:	-se ocupa de gestiunea materialelor din biblioteca 
-	-Cititor 	: 	-utilizatorul propriu zis, cel care vine si citeste/imprumuta materiale din biblioteca
+	-Cititor:	-utilizatorul propriu zis, cel care vine si citeste/imprumuta materiale din biblioteca
 	
 
 -Limbaje folosite
@@ -25,5 +25,5 @@ Tipuri de useri:
 	Hibernate                 				- Manipulare si lucru cu baza de date
 	Spring                    				- Managementul de dependinte
 	JUnit5     	          				- Testare
- 	OracleDB/PostgreSQL/MongoDB(Inca nu sunt hotarat)       -Baza de date
-	JavaFX(SceneBuilder)					-GUI
+ 	OracleDB/PostgreSQL/MongoDB(Inca nu sunt hotarat)       - Baza de date
+	JavaFX(SceneBuilder)					- GUI
