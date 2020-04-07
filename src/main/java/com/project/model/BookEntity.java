@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "t_book")
-public class BookEntity {
+public class BookEntity extends AbstractBaseEntity{
 
     private String title;
     private String bookAuthor;
