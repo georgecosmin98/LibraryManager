@@ -42,4 +42,13 @@ public class LibrarianEntity {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    @Override
+    public String toString() {
+        return "LibrarianEntity{" +
+                "librarianName='" + librarianName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
+    }
 }
