@@ -24,7 +24,7 @@ Tipuri de useri:
 	-Cititor:	-utilizatorul propriu zis, cel care vine si citeste/imprumuta materiale din biblioteca
 	
 
--Limbaje folosite
+Limbaje folosite
 
   Java:     
   
