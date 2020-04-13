@@ -12,8 +12,8 @@ public interface BookRepository {
 
     void readBook();
 
-    void deleteBook(String name);
+    void deleteBook(String title);
 
-    BookEntity searchBook(String fname);
+    BookEntity searchBook(String title);
 }
 
