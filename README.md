@@ -25,7 +25,9 @@ Tipuri de useri:
 	
 
 -Limbaje folosite
+
   Java:     
+  
 	Hibernate                 				- Manipulare si lucru cu baza de date
 	Spring                    				- Managementul de dependinte
 	JUnit5     	          				- Testare
