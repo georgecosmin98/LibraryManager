@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_useraccount")
-public class UserAccount extends AbstractBaseEntity{
+@Table(name = "t_useraccount")
+public class UserAccount extends AbstractBaseEntity {
 
     private String username;
     private String password;

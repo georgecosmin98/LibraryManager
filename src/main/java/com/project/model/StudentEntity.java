@@ -4,13 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_student")
-public class StudentEntity extends AbstractBaseEntity{
+@Table(name = "t_student")
+public class StudentEntity extends AbstractBaseEntity {
 
-private String studentName;
-private String phoneNumber;
-private String address;
-private String emailAddress;
+    private String studentName;
+    private String phoneNumber;
+    private String address;
+    private String emailAddress;
 
     public String getStudentName() {
         return studentName;

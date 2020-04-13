@@ -1,13 +1,16 @@
 package com.project.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "t_book")
-public class BookEntity extends AbstractBaseEntity{
+public class BookEntity {
 
+    @Id
+    private String isbn;
     private String title;
     private String bookAuthor;
     private Date yearOfPublication;
@@ -16,7 +19,8 @@ public class BookEntity extends AbstractBaseEntity{
     public BookEntity() {
     }
 
-    public BookEntity(String title, String bookAuthor, Date yearOfPublication, BookStatus status) {
+    public BookEntity(String isbn, String title, String bookAuthor, Date yearOfPublication, BookStatus status) {
+        this.isbn = isbn;
         this.title = title;
         this.bookAuthor = bookAuthor;
         this.yearOfPublication = yearOfPublication;
@@ -55,10 +59,19 @@ public class BookEntity extends AbstractBaseEntity{
         this.status = status;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     @Override
     public String toString() {
         return "BookEntity{" +
-                "title='" + title + '\'' +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", yearOfPublication=" + yearOfPublication +
                 ", status=" + status +
