@@ -1,10 +1,13 @@
+# LibraryManager
+Project for IPDP in JAVA
+
 Scop:
- 
-	Pentru a tine pasul cu tendintele actuale, bibliotecile trebuie sa fie gestionate computerizat
+ 	Pentru a tine pasul cu tendintele actuale, bibliotecile trebuie sa fie gestionate computerizat
 astfel incat activitatea sa se poata desfasura mult mai eficient si interactiv. 
 
 
 Potentiali clienti:
+	
 	-Biblioteci universitare
 	-Biblioteci scolare
 	-Biblioteci publice
@@ -15,13 +18,16 @@ Potentiali clienti:
 
 
 Tipuri de useri:
+	
 	-Administrator: -angajator,director,manager,etc care raspunde direct de bibliotecar
 	-Bibliotecar:	-se ocupa de gestiunea materialelor din biblioteca 
 	-Cititor:	-utilizatorul propriu zis, cel care vine si citeste/imprumuta materiale din biblioteca
 	
 
--Limbaje folosite
+Limbaje folosite
+
   Java:     
+  
 	Hibernate                 				- Manipulare si lucru cu baza de date
 	Spring                    				- Managementul de dependinte
 	JUnit5     	          				- Testare
