@@ -2,14 +2,16 @@ package com.project.repository;
 
 import com.project.model.BookEntity;
 import com.project.repository.api.BookRepository;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+@Repository
 public class BookRepositoryImpl implements BookRepository {
-    @PersistenceContext
 
+    @PersistenceContext
     private EntityManager entityManager;
 
 
