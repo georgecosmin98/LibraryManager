@@ -1,6 +1,6 @@
 package com.project.model;
 
-public enum  BookStatus {
+public enum BookStatus {
     AVAILABLE(0),
     NOTAVAILABLE(1);
 
