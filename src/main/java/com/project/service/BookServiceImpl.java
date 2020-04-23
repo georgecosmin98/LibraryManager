@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl{
 
     @Resource
     private BookRepositoryImpl bookRepository;
@@ -25,7 +25,6 @@ public class BookServiceImpl implements BookService {
     public void deleteBook(String title) {
         bookRepository.deleteBook(title);
     }
-
 
     public BookRepositoryImpl getBookRepository() {
         return bookRepository;
