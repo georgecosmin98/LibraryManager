@@ -26,6 +26,9 @@ public class BookServiceImpl{
         bookRepository.deleteBook(title);
     }
 
+    public void searchBook(String title){
+
+    }
     public BookRepositoryImpl getBookRepository() {
         return bookRepository;
     }
