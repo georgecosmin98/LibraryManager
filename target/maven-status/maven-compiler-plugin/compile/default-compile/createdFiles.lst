@@ -1,0 +1,16 @@
+com\project\model\TypeOfUser.class
+com\project\ui\main\mainController.class
+com\project\model\BookEntity.class
+com\project\service\API\BookService.class
+com\project\Library.class
+com\project\model\UserAccount.class
+com\project\ui\addbook\LibraryAssistant.class
+com\project\model\AbstractBaseEntity.class
+com\project\service\BookServiceImpl.class
+com\project\ui\addbook\AddBookController.class
+com\project\model\LibrarianEntity.class
+com\project\model\StudentEntity.class
+com\project\repository\BookRepositoryImpl.class
+com\project\repository\api\BookRepository.class
+com\project\model\BookStatus.class
+com\project\ui\main\Main.class
