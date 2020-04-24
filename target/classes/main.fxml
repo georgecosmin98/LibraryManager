@@ -42,7 +42,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../java/com/project/ui/main/font/library_add-24px.png" />
+                              <Image url="@font/library_add-24px.png" />
                            </image>
                         </ImageView>
                      </graphic>
