@@ -10,17 +10,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import javafx.event.ActionEvent;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddBookController implements Initializable {
@@ -55,6 +53,7 @@ public class AddBookController implements Initializable {
     private StackPane rootPane;
 
     BookServiceImpl bookService;
+
     @FXML
     void initialize() {
     }
@@ -63,12 +62,8 @@ public class AddBookController implements Initializable {
 
     }
 
-    @FXML
-    public void addBook(ActionEvent event) {
 
-    }
-
-    public void addBook(javafx.event.ActionEvent actionEvent) throws ParseException {
+    public void addBook(ActionEvent actionEvent) throws ParseException {
         String bookId = isbn.getText();
         String bookTitle = title.getText();
         String bookAuthor = bookauthor.getText();
@@ -76,8 +71,7 @@ public class AddBookController implements Initializable {
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
         BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
 
-        if (bookId.isEmpty()||bookTitle.isEmpty()||bookAuthor.isEmpty()||data.getValue()==null)
-        {
+        if (bookId.isEmpty() || bookTitle.isEmpty() || bookAuthor.isEmpty() || data.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Please enter in all fields");
@@ -87,5 +81,11 @@ public class AddBookController implements Initializable {
         String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         bookService.createBook(bookId, bookTitle, bookAuthor, ft.parse(date), BookStatus.AVAILABLE);
+    }
+
+
+    public void close(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        stage.close();
     }
 }
