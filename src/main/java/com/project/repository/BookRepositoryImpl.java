@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
@@ -41,8 +42,8 @@ public class BookRepositoryImpl implements BookRepository {
         return (BookEntity) query.getSingleResult();
     }
 
-    public void displayAllBook() {
+    public List<BookEntity> displayAllBook() {
         Query query = this.entityManager.createQuery("select b from BookEntity b");
-        System.out.println(query.getResultList());
+        return query.getResultList();
     }
 }

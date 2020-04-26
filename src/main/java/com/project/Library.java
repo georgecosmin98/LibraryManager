@@ -1,12 +1,15 @@
 package com.project;
 
+import com.project.model.BookEntity;
 import com.project.model.BookStatus;
+import com.project.repository.BookRepositoryImpl;
 import com.project.service.BookServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Library {
     public static void main(String[] args) throws ParseException {
@@ -16,7 +19,8 @@ public class Library {
 
         BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
 
-        bookService.getBookRepository().displayAllBook();
+        List<BookEntity> bookList = bookService.getBookRepository().displayAllBook();
+
 
 
     }

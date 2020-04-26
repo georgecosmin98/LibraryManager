@@ -1,9 +1,16 @@
 package com.project.model;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.internal.SessionFactoryImpl;
+import org.hibernate.internal.SessionImpl;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_book")
@@ -26,6 +33,8 @@ public class BookEntity {
         this.yearOfPublication = yearOfPublication;
         this.status = status;
     }
+
+
 
     public String getTitle() {
         return title;
@@ -67,6 +76,7 @@ public class BookEntity {
         this.isbn = isbn;
     }
 
+
     @Override
     public String toString() {
         return "BookEntity{" +
@@ -77,4 +87,6 @@ public class BookEntity {
                 ", status=" + status +
                 '}';
     }
+
+
 }
