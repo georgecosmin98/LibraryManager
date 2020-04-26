@@ -1,4 +1,4 @@
-package com.project.ui.addbook;
+package com.project.ui.listbook;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LibraryAssistant extends Application {
-
+public class ListBook extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/add_book.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("/list_book.fxml"));
+        primaryStage.setTitle("Library Manager");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
@@ -21,6 +20,3 @@ public class LibraryAssistant extends Application {
         launch(args);
     }
 }
-
-
-

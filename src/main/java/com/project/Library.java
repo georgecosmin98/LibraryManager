@@ -16,7 +16,7 @@ public class Library {
 
         BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
 
-        bookService.createBook("3","Hatz","Dorian",ft.parse("2019-09-20"),BookStatus.AVAILABLE);
+        bookService.getBookRepository().displayAllBook();
 
 
     }

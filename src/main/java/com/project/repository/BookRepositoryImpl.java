@@ -40,4 +40,9 @@ public class BookRepositoryImpl implements BookRepository {
         query.setParameter("title", title);
         return (BookEntity) query.getSingleResult();
     }
+
+    public void displayAllBook() {
+        Query query = this.entityManager.createQuery("select b from BookEntity b");
+        System.out.println(query.getResultList());
+    }
 }
