@@ -3,6 +3,8 @@ package com.project.repository.api;
 import com.project.model.BookEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BookRepository {
 
@@ -15,5 +17,7 @@ public interface BookRepository {
     void deleteBook(String title);
 
     BookEntity searchBook(String title);
+
+    List<BookEntity> displayAllBook();
 }
 
