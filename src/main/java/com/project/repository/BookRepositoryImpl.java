@@ -37,7 +37,7 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     public BookEntity searchBook(String title) {
-        Query query = this.entityManager.createQuery("select b from BookEntity b where BookEntity =:title");
+        Query query = this.entityManager.createQuery("select b from BookEntity b where b.title =:title");
         query.setParameter("title", title);
         return (BookEntity) query.getSingleResult();
     }
