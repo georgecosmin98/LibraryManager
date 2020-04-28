@@ -1,5 +1,6 @@
 package com.project.ui.addbook;
 
+import com.project.alert.makeAlert;
 import com.project.model.BookStatus;
 import com.project.service.BookServiceImpl;
 import javafx.fxml.FXML;
@@ -52,7 +53,8 @@ public class AddBookController implements Initializable {
     @FXML
     private StackPane rootPane;
 
-    BookServiceImpl bookService;
+    ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
+    BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
 
     @FXML
     void initialize() {
@@ -64,23 +66,14 @@ public class AddBookController implements Initializable {
 
 
     public void addBook(ActionEvent actionEvent) throws ParseException {
-        String bookId = isbn.getText();
-        String bookTitle = title.getText();
-        String bookAuthor = bookauthor.getText();
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
-        BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
-
-        if (bookId.isEmpty() || bookTitle.isEmpty() || bookAuthor.isEmpty() || data.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Please enter in all fields");
-            alert.showAndWait();
+        if (isbn.getText().isEmpty() || bookauthor.getText().isEmpty() || title.getText().isEmpty() || data.getValue() == null) {
+            makeAlert.showMessageAlert("Please fill all fields!");
             return;
         }
         String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-        bookService.createBook(bookId, bookTitle, bookAuthor, ft.parse(date), BookStatus.AVAILABLE);
+        bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
     }
 
 
