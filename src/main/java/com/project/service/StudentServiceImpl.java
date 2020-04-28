@@ -10,18 +10,18 @@ import javax.annotation.Resource;
 
 @Service
 @Transactional
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl{
 
     @Resource
-    StudentRepositoryImpl studentRepository;
+    private StudentRepositoryImpl studentRepository;
 
-    @Override
+
     public StudentEntity createStudent(String sid, String studentName, String phoneNumber, String address, String emailAddress) {
         StudentEntity newStudent = new StudentEntity(sid, studentName, phoneNumber, address, emailAddress);
         return studentRepository.create(newStudent);
     }
 
-    @Override
+
     public void deleteStudent(String sid) {
         studentRepository.deleteStudent(sid);
     }

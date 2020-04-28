@@ -1,9 +1,11 @@
 package com.project.repository.api;
 
 import com.project.model.StudentEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface StudentRepository {
 
     StudentEntity create(StudentEntity studentToCreate);

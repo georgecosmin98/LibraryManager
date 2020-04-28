@@ -1,13 +1,11 @@
 package com.project.ui.login;
 
 import com.project.alert.makeAlert;
-import com.sun.deploy.security.SelectableSecurityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
