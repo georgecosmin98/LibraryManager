@@ -55,6 +55,7 @@ public class AddBookController implements Initializable {
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
+    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     @FXML
     void initialize() {
@@ -72,7 +73,6 @@ public class AddBookController implements Initializable {
             return;
         }
         String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
     }
 

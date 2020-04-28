@@ -1,5 +1,6 @@
 package com.project.ui.login;
 
+import com.project.alert.makeAlert;
 import com.sun.deploy.security.SelectableSecurityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -26,10 +27,8 @@ public class LoginController implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException {
         if (!username.getText().equals("admin") || !password.getText().equals("pass")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Username or password invalid! Try again! ");
-            alert.showAndWait();
+            makeAlert.showMessageAlert("Username or password invalid! Try again!");
+            return;
         }
         else {
             closeStage();
