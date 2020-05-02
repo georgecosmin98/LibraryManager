@@ -29,7 +29,9 @@ import java.util.ResourceBundle;
 
 
 public class ListBookController implements Initializable {
-   ObservableList<BookEntity> list = FXCollections.observableArrayList();
+
+    ObservableList<BookEntity> list = FXCollections.observableArrayList();
+
     @FXML
     private AnchorPane rootPane;
 

@@ -46,4 +46,13 @@ public class mainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
         stage.show();
     }
+
+    public void liststudent(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/list_student.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("List book menu");
+        stage.setScene(new Scene(parent));
+        stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
+        stage.show();
+    }
 }

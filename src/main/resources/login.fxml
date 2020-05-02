@@ -6,8 +6,8 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.login.LoginController">
    <children>
-      <Button fx:id="loginButton" layoutX="65.0" layoutY="161.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" onAction="#login" text="Login" />
-      <Button fx:id="closeButton" layoutX="200.0" layoutY="161.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="85.0" onAction="#close" text="Close" />
+      <Button fx:id="loginButton" layoutX="65.0" layoutY="161.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="85.0" text="Login" />
+      <Button fx:id="closeButton" layoutX="200.0" layoutY="161.0" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="85.0" text="Close" />
       <TextField fx:id="username" layoutX="46.0" layoutY="51.0" prefHeight="25.0" prefWidth="250.0" promptText="Username" />
       <TextField fx:id="password" layoutX="47.0" layoutY="113.0" prefHeight="25.0" prefWidth="250.0" promptText="Password" />
    </children>

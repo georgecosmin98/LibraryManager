@@ -16,7 +16,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class studentController implements Initializable {
+public class AddStudentController implements Initializable {
 
 
     @FXML
