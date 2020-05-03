@@ -3,7 +3,6 @@ package com.project.repository;
 import com.project.model.BookEntity;
 import com.project.repository.api.BookRepository;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -39,6 +38,12 @@ public class BookRepositoryImpl implements BookRepository {
     public BookEntity searchBook(String title) {
         Query query = this.entityManager.createQuery("select b from BookEntity b where b.title =:title");
         query.setParameter("title", title);
+        return (BookEntity) query.getSingleResult();
+    }
+
+    public BookEntity searchBookByISBN(String isbn) {
+        Query query = this.entityManager.createQuery("select b from BookEntity b where b.isbn =:isbn");
+        query.setParameter("isbn", isbn);
         return (BookEntity) query.getSingleResult();
     }
 

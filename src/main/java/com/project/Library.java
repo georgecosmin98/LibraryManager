@@ -1,4 +1,5 @@
 package com.project;
+import com.project.service.BookServiceImpl;
 import com.project.service.StudentServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,8 +15,7 @@ public class Library {
 
         StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
 
-
-        studentService.getStudentRepository().readStudent();
+        BookServiceImpl bookService = (BookServiceImpl) context.getBean((BookServiceImpl.class));
 
 
     }

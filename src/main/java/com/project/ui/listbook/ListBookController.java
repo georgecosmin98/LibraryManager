@@ -2,8 +2,6 @@ package com.project.ui.listbook;
 
 import com.project.model.BookEntity;
 import com.project.model.BookStatus;
-import com.project.repository.BookRepositoryImpl;
-import com.project.service.API.BookService;
 import com.project.service.BookServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,15 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.sql.ordering.antlr.Factory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.persistence.Persistence;
-
-import java.awt.print.Book;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;

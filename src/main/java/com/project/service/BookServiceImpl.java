@@ -3,7 +3,6 @@ package com.project.service;
 import com.project.model.BookEntity;
 import com.project.model.BookStatus;
 import com.project.repository.BookRepositoryImpl;
-import com.project.service.API.BookService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
