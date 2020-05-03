@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.ResourceBundle;
 
 public class mainController implements Initializable {
@@ -21,38 +22,33 @@ public class mainController implements Initializable {
 
 
     public void addBook(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/add_book.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Add book menu");
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
-        stage.show();
+        loadWindows("/add_book.fxml","Add book menu");
     }
 
     public void listbook(ActionEvent actionEvent) throws IOException{
-        Parent parent = FXMLLoader.load(getClass().getResource("/list_book.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("List book menu");
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
-        stage.show();
+        loadWindows("/list_book.fxml","List book menu");
     }
 
     public void addstudent(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/add_student.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("List book menu");
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
-        stage.show();
+        loadWindows("/add_student.fxml","Add student menu");
     }
 
     public void liststudent(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/list_student.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("List book menu");
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
-        stage.show();
+        loadWindows("/list_student.fxml","List student menu");
+    }
+
+    public void loadWindows(String location, String windowsTitle){
+        try{
+            Parent parent = FXMLLoader.load(getClass().getResource(location));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle(windowsTitle);
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
+            stage.show();
+        }
+        catch (IOException ex){
+            System.out.println(ex.toString());
+            System.out.println("Could not open " + windowsTitle);
+        }
     }
 }
