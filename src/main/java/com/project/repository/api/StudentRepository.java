@@ -16,7 +16,7 @@ public interface StudentRepository {
 
     void deleteStudent(String sid);
 
-    StudentEntity searchStudent(String sid);
+    StudentEntity searchStudentBySID(String sid);
 
     List<StudentEntity> displayAllStudent();
 }

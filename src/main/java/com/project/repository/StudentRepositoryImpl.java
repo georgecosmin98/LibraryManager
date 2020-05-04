@@ -40,7 +40,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public StudentEntity searchStudent(String sid) {
+    public StudentEntity searchStudentBySID(String sid) {
         Query query = this.entityManager.createQuery("select s from StudentEntity s where s.sid=:sid");
         query.setParameter("sid", sid);
         return (StudentEntity) query.getSingleResult();

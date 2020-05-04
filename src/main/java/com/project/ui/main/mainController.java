@@ -1,6 +1,7 @@
 package com.project.ui.main;
 
 import com.project.service.BookServiceImpl;
+import com.project.service.StudentServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,5 +105,14 @@ public class mainController implements Initializable {
         bookName.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getTitle());
         bookAuthor.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getBookAuthor());
         status.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().toString());
+    }
+
+    public void loadStudentInfo(ActionEvent actionEvent) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
+        StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
+
+        studentName.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getStudentName());
+        phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
+        Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
     }
 }

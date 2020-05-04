@@ -17,6 +17,5 @@ public class Library {
 
         BookServiceImpl bookService = (BookServiceImpl) context.getBean((BookServiceImpl.class));
 
-
     }
 }
