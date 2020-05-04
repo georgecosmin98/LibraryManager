@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.listbookborrow.listBookBorrowController">
+   <children>
+      <TableView fx:id="tableView" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="sidCol" prefWidth="132.79998779296875" text="SID" />
+            <TableColumn fx:id="isbnCol" prefWidth="144.79998779296875" text="ISBN" />
+            <TableColumn fx:id="loanCol" prefWidth="164.79995727539062" text="Loan Date" />
+            <TableColumn fx:id="submissionCol" prefWidth="181.60003662109375" text="Submission Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
