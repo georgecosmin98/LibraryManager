@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class BookServiceImpl {
+public class BookServiceImpl{
 
     @Resource
     private BookRepositoryImpl bookRepository;

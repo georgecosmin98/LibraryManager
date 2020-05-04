@@ -19,6 +19,14 @@ public class BookBorrowEntity extends AbstractBaseEntity{
         this.submissionDate = submissionDate;
     }
 
+    public BookBorrowEntity(long id, String sid, String isbn, Date loanDate, Date submissionDate) {
+        super(id);
+        this.sid = sid;
+        this.isbn = isbn;
+        this.loanDate = loanDate;
+        this.submissionDate = submissionDate;
+    }
+
     public BookBorrowEntity() {
     }
 

@@ -1,7 +1,6 @@
 package com.project.repository;
 
 import com.project.model.BookBorrowEntity;
-import com.project.model.BookEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -25,8 +24,8 @@ public class BookBorrowRepositoryImpl {
     }
 
 
-    public List<BookEntity> displayAllBookBorrow() {
-        Query query = this.entityManager.createQuery("select b from BookEntity b");
+    public List<BookBorrowEntity> displayAllBookBorrow() {
+        Query query = this.entityManager.createQuery("select b from BookBorrowEntity b");
         return query.getResultList();
     }
 }

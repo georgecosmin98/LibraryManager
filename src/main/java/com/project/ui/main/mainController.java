@@ -1,5 +1,6 @@
 package com.project.ui.main;
 
+import com.project.service.BookBorrowServiceImpl;
 import com.project.service.BookServiceImpl;
 import com.project.service.StudentServiceImpl;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -20,6 +22,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class mainController implements Initializable {
@@ -62,6 +68,9 @@ public class mainController implements Initializable {
     @FXML
     private Text status;
 
+    @FXML
+    private DatePicker submissionDate;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -82,6 +91,10 @@ public class mainController implements Initializable {
 
     public void liststudent(ActionEvent actionEvent) throws IOException {
         loadWindows("/list_student.fxml", "List student menu");
+    }
+
+    public void listBorrowBook(ActionEvent actionEvent) {
+        loadWindows("/list_bookborrow.fxml","List borrow book");
     }
 
     public void loadWindows(String location, String windowsTitle) {
@@ -115,4 +128,14 @@ public class mainController implements Initializable {
         phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
         Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
     }
+
+    public void issueBook(ActionEvent actionEvent) throws ParseException {
+        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
+        BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        String date = submissionDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        bookBorrowService.createBookBorrow(studentIDinput.getText(),bookISBNinput.getText(),ft.parse(ft.format(new Date())),ft.parse(date));
+
+    }
+
 }
