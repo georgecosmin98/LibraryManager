@@ -11,20 +11,23 @@ public class BookBorrowEntity extends AbstractBaseEntity{
     String isbn;
     Date loanDate;
     Date submissionDate;
+    BookBorrowStatus status;
 
-    public BookBorrowEntity(String sid, String isbn, Date loanDate, Date submissionDate) {
+    public BookBorrowEntity(String sid, String isbn, Date loanDate, Date submissionDate,BookBorrowStatus status) {
         this.sid = sid;
         this.isbn = isbn;
         this.loanDate = loanDate;
         this.submissionDate = submissionDate;
+        this.status = status;
     }
 
-    public BookBorrowEntity(long id, String sid, String isbn, Date loanDate, Date submissionDate) {
+    public BookBorrowEntity(long id, String sid, String isbn, Date loanDate, Date submissionDate,BookBorrowStatus status) {
         super(id);
         this.sid = sid;
         this.isbn = isbn;
         this.loanDate = loanDate;
         this.submissionDate = submissionDate;
+        this.status = status;
     }
 
     public BookBorrowEntity() {
@@ -62,6 +65,14 @@ public class BookBorrowEntity extends AbstractBaseEntity{
         this.submissionDate = submissionDate;
     }
 
+    public BookBorrowStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BookBorrowStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "BookBorrowEntity{" +
@@ -69,6 +80,7 @@ public class BookBorrowEntity extends AbstractBaseEntity{
                 ", isbn='" + isbn + '\'' +
                 ", loanDate=" + loanDate +
                 ", submissionDate=" + submissionDate +
+                ", status=" + status +
                 '}';
     }
 }

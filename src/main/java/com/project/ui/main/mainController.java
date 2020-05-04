@@ -1,5 +1,7 @@
 package com.project.ui.main;
 
+import com.project.alert.makeAlert;
+import com.project.model.BookBorrowStatus;
 import com.project.model.BookStatus;
 import com.project.service.BookBorrowServiceImpl;
 import com.project.service.BookServiceImpl;
@@ -134,9 +136,13 @@ public class mainController implements Initializable {
 
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         String date = submissionDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date));
-        bookService.updateBookStatus(bookISBNinput.getText(),BookStatus.NOTAVAILABLE);
+        if (bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
+            bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date), BookBorrowStatus.ISSUED);
+            bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
+        } else {
+            makeAlert.showMessageAlert("This book is not available!");
 
+        }
     }
 
 }

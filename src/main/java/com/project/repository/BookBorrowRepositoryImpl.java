@@ -28,4 +28,5 @@ public class BookBorrowRepositoryImpl {
         Query query = this.entityManager.createQuery("select b from BookBorrowEntity b");
         return query.getResultList();
     }
+
 }
