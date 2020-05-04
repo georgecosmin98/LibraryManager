@@ -1,11 +1,12 @@
 package com.project.ui.main;
 
 import com.project.alert.makeAlert;
-import com.project.model.BookBorrowStatus;
-import com.project.model.BookStatus;
+import com.project.model.*;
 import com.project.service.BookBorrowServiceImpl;
 import com.project.service.BookServiceImpl;
 import com.project.service.StudentServiceImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -73,6 +75,16 @@ public class mainController implements Initializable {
 
     @FXML
     private DatePicker submissionDate;
+
+    @FXML
+    private TextField isbnSubmission;
+
+    @FXML
+    private Button returnButton;
+
+    @FXML
+    private ListView<String> listSubmissionView;
+
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
@@ -141,8 +153,37 @@ public class mainController implements Initializable {
             bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
         } else {
             makeAlert.showMessageAlert("This book is not available!");
-
         }
     }
 
+    public void returnBook(ActionEvent actionEvent) {
+
+        if (bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText()).getStatus().equals(BookStatus.NOTAVAILABLE)) {
+            bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
+            bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
+        }
+    }
+
+    public void loadSubmissionInfo(ActionEvent actionEvent) {
+
+        ObservableList<String> issueData = FXCollections.observableArrayList();
+        BookBorrowEntity bookBorrowEntity = bookBorrowService.getBookBorrowRepository().searchBookByISBN(isbnSubmission.getText());
+        BookEntity bookEntity = bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText());
+        StudentEntity studentEntity = studentService.getStudentRepository().searchStudentBySID(bookBorrowEntity.getSid());
+
+        if (bookBorrowEntity.getStatus().equals(BookBorrowStatus.ISSUED)) {
+            issueData.add("Issue Date and Time: " + bookBorrowEntity.getLoanDate());
+            issueData.add("Book Information: ");
+            issueData.add("Book Title: " + bookEntity.getTitle());
+            issueData.add("Book Author: " + bookEntity.getBookAuthor());
+            issueData.add("Student Information: ");
+            issueData.add("Student Name: " + studentEntity.getStudentName());
+            issueData.add("Student Phone Number:" + studentEntity.getPhoneNumber());
+            issueData.add("Student Email: " + studentEntity.getEmailAddress());
+        }
+        else
+            makeAlert.showMessageAlert("This isbn is incorrect or this book is already returned!");
+
+        listSubmissionView.getItems().setAll(issueData);
+    }
 }

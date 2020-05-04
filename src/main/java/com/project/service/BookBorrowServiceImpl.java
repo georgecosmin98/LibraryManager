@@ -24,4 +24,8 @@ public class BookBorrowServiceImpl {
     public BookBorrowRepositoryImpl getBookBorrowRepository() {
         return bookBorrowRepository;
     }
+
+    public void updateBookBorrowStatus (String isbn, BookBorrowStatus status){
+        bookBorrowRepository.updateBookBorrowStatus(isbn,status);
+    }
 }
