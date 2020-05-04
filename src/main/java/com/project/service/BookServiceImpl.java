@@ -11,14 +11,14 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class BookServiceImpl{
+public class BookServiceImpl {
 
     @Resource
     private BookRepositoryImpl bookRepository;
 
     public BookEntity createBook(String isbn, String title, String bookAuthor, Date yearOfPublication, BookStatus status) {
-        BookEntity newFlight = new BookEntity(isbn, title, bookAuthor, yearOfPublication, status);
-        return bookRepository.create(newFlight);
+        BookEntity newBook = new BookEntity(isbn, title, bookAuthor, yearOfPublication, status);
+        return bookRepository.create(newBook);
     }
 
     public void deleteBook(String title) {
