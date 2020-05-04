@@ -1,5 +1,6 @@
 package com.project.ui.main;
 
+import com.project.model.BookStatus;
 import com.project.service.BookBorrowServiceImpl;
 import com.project.service.BookServiceImpl;
 import com.project.service.StudentServiceImpl;
@@ -71,6 +72,11 @@ public class mainController implements Initializable {
     @FXML
     private DatePicker submissionDate;
 
+    ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
+    BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
+    BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
+    StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -94,7 +100,7 @@ public class mainController implements Initializable {
     }
 
     public void listBorrowBook(ActionEvent actionEvent) {
-        loadWindows("/list_bookborrow.fxml","List borrow book");
+        loadWindows("/list_bookborrow.fxml", "List borrow book");
     }
 
     public void loadWindows(String location, String windowsTitle) {
@@ -111,9 +117,7 @@ public class mainController implements Initializable {
         }
     }
 
-    public void loadBookInfo(ActionEvent event){
-        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
-        BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
+    public void loadBookInfo(ActionEvent event) {
 
         bookName.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getTitle());
         bookAuthor.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getBookAuthor());
@@ -121,20 +125,17 @@ public class mainController implements Initializable {
     }
 
     public void loadStudentInfo(ActionEvent actionEvent) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
-        StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
-
         studentName.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getStudentName());
         phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
         Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
     }
 
     public void issueBook(ActionEvent actionEvent) throws ParseException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
-        BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
+
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         String date = submissionDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        bookBorrowService.createBookBorrow(studentIDinput.getText(),bookISBNinput.getText(),ft.parse(ft.format(new Date())),ft.parse(date));
+        bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date));
+        bookService.updateBookStatus(bookISBNinput.getText(),BookStatus.NOTAVAILABLE);
 
     }
 

@@ -25,6 +25,9 @@ public class BookServiceImpl{
         bookRepository.deleteBook(title);
     }
 
+    public void updateBookStatus(String isbn, BookStatus status){
+        bookRepository.updateBookStatus(isbn,status);
+    }
     public BookRepositoryImpl getBookRepository() {
         return bookRepository;
     }

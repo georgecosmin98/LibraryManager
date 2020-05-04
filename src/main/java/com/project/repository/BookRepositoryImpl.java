@@ -1,6 +1,7 @@
 package com.project.repository;
 
 import com.project.model.BookEntity;
+import com.project.model.BookStatus;
 import com.project.repository.api.BookRepository;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
@@ -45,6 +46,13 @@ public class BookRepositoryImpl implements BookRepository {
         Query query = this.entityManager.createQuery("select b from BookEntity b where b.isbn =:isbn");
         query.setParameter("isbn", isbn);
         return (BookEntity) query.getSingleResult();
+    }
+
+    public void updateBookStatus(String isbn,BookStatus status){
+        Query query = this.entityManager.createQuery("update BookEntity b set b.status =: status where b.isbn =:isbn");
+        query.setParameter("isbn", isbn);
+        query.setParameter("status",status);
+        query.executeUpdate();
     }
 
     public List<BookEntity> displayAllBook() {
