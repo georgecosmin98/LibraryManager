@@ -19,4 +19,7 @@ public class LibrarianServiceImpl {
         return librarianRepository.create(newLibrarian);
     }
 
+    public LibrarianRepositoryImpl getLibrarianRepository() {
+        return librarianRepository;
+    }
 }
