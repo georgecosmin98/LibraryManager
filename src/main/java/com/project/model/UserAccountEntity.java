@@ -11,6 +11,9 @@ public class UserAccountEntity extends AbstractBaseEntity {
     private String password;
     private TypeOfUser typeOfUser;
 
+    public UserAccountEntity() {
+    }
+
     public UserAccountEntity(String username, String password, TypeOfUser typeOfUser) {
         this.username = username;
         this.password = password;

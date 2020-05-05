@@ -30,6 +30,11 @@ public class UserAccountRepositoryImpl {
         return query.getResultList();
     }
 
-
+    public UserAccountEntity searchUser(String username,String password){
+        Query query = this.entityManager.createQuery("select u from UserAccountEntity u where u.username =: username and u.password =: password");
+        query.setParameter("username",username);
+        query.setParameter("password",password);
+        return (UserAccountEntity) query.getSingleResult();
+    }
 
 }
