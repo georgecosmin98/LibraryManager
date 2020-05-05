@@ -14,27 +14,28 @@ public class UserAccountRepositoryImpl {
     @PersistenceContext
     EntityManager entityManager;
 
-    public UserAccountEntity create(UserAccountEntity userToCreate){
+    public UserAccountEntity create(UserAccountEntity userToCreate) {
         entityManager.persist(userToCreate);
         return userToCreate;
     }
 
-    public void deleteUserAccount(String id){
+    public void deleteUserAccount(String id) {
         Query query = this.entityManager.createQuery("select u from UserAccountEntity u where u.id =: id");
         query.setParameter("id", id);
         entityManager.remove(query.getSingleResult());
     }
 
-    public List<UserAccountEntity> displayAllUsers(){
+    public List<UserAccountEntity> displayAllUsers() {
         Query query = this.entityManager.createQuery("select u from UserAccountEntity u");
         return query.getResultList();
     }
 
-    public UserAccountEntity searchUser(String username,String password){
-        Query query = this.entityManager.createQuery("select u from UserAccountEntity u where u.username =: username and u.password =: password");
-        query.setParameter("username",username);
-        query.setParameter("password",password);
-        return (UserAccountEntity) query.getSingleResult();
+    public List<UserAccountEntity> searchUser(String username, String password) {
+            Query query = this.entityManager.createQuery("select u from UserAccountEntity u where u.username =: username and u.password =: password");
+            query.setParameter("username", username);
+            query.setParameter("password", password);
+            return query.getResultList();
+
+        }
     }
 
-}
