@@ -8,14 +8,16 @@ import javax.persistence.Table;
 public class LibrarianEntity extends AbstractBaseEntity {
     private String librarianName;
     private String phoneNumber;
+    private String address;
     private String emailAddress;
 
     public LibrarianEntity() {
     }
 
-    public LibrarianEntity(String librarianName, String phoneNumber, String emailAddress) {
+    public LibrarianEntity(String librarianName, String phoneNumber, String address, String emailAddress) {
         this.librarianName = librarianName;
         this.phoneNumber = phoneNumber;
+        this.address = address;
         this.emailAddress = emailAddress;
     }
 
@@ -43,11 +45,20 @@ public class LibrarianEntity extends AbstractBaseEntity {
         this.emailAddress = emailAddress;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "LibrarianEntity{" +
                 "librarianName='" + librarianName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 '}';
     }
