@@ -162,6 +162,8 @@ public class mainController implements Initializable {
             bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
         }
+         else
+             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
     }
 
     public void loadSubmissionInfo(ActionEvent actionEvent) {
@@ -178,7 +180,7 @@ public class mainController implements Initializable {
             issueData.add("Book Author: " + bookEntity.getBookAuthor());
             issueData.add("Student Information: ");
             issueData.add("Student Name: " + studentEntity.getStudentName());
-            issueData.add("Student Phone Number:" + studentEntity.getPhoneNumber());
+            issueData.add("Student Phone Number: " + studentEntity.getPhoneNumber());
             issueData.add("Student Email: " + studentEntity.getEmailAddress());
         }
         else

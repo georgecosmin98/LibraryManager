@@ -15,31 +15,27 @@ public class BookBorrowRepositoryImpl {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public BookBorrowEntity create (BookBorrowEntity borrowToCreate) {
+    public BookBorrowEntity create(BookBorrowEntity borrowToCreate) {
         entityManager.persist(borrowToCreate);
         return borrowToCreate;
     }
-
-    public void save(BookBorrowEntity b1) {
-        this.entityManager.merge(b1);
-    }
-
 
     public List<BookBorrowEntity> displayAllBookBorrow() {
         Query query = this.entityManager.createQuery("select b from BookBorrowEntity b");
         return query.getResultList();
     }
 
-    public void updateBookBorrowStatus(String isbn, BookBorrowStatus status){
+    public void updateBookBorrowStatus(String isbn, BookBorrowStatus status) {
         Query query = this.entityManager.createQuery("update BookBorrowEntity b set b.status =: status where b.isbn =:isbn");
         query.setParameter("isbn", isbn);
-        query.setParameter("status",status);
+        query.setParameter("status", status);
         query.executeUpdate();
     }
 
     public BookBorrowEntity searchBookByISBN(String isbn) {
-        Query query = this.entityManager.createQuery("select b from BookBorrowEntity b where b.isbn =:isbn");
+        Query query = this.entityManager.createQuery("select b from BookBorrowEntity b where b.isbn =:isbn and b.status =: stats");
         query.setParameter("isbn", isbn);
+        query.setParameter("stats", BookBorrowStatus.ISSUED);
         return (BookBorrowEntity) query.getSingleResult();
     }
 }
