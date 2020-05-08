@@ -22,7 +22,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.main.mainController">
    <children>
-      <BorderPane>
+      <BorderPane styleClass="BorderPane">
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
@@ -47,7 +47,7 @@
          <left>
             <VBox prefHeight="506.0" prefWidth="158.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addBook" prefHeight="58.0" prefWidth="162.0" text="Add Book          ">
+                  <Button mnemonicParsing="false" onAction="#addBook" prefHeight="58.0" prefWidth="162.0" text="Add Book     ">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,15 +55,9 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </Button>
-                  <Button fx:id="listbook" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#listbook" prefHeight="58.0" prefWidth="162.0" text="List Books        ">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@font/listBook.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </Button>
                   <Button fx:id="addstudent" layoutX="10.0" layoutY="68.0" mnemonicParsing="false" onAction="#addstudent" prefHeight="58.0" prefWidth="162.0" text="Add Student       ">
                      <graphic>
@@ -73,6 +67,21 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="listbook" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#listbook" prefHeight="58.0" prefWidth="162.0" text="List Books        ">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listBook.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </Button>
                   <Button fx:id="liststudent" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#liststudent" prefHeight="58.0" prefWidth="162.0" text="List Students      ">
                      <graphic>
@@ -82,6 +91,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </Button>
                   <Button fx:id="listBorrowBook" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" onAction="#listBorrowBook" prefHeight="58.0" prefWidth="162.0" text="List Issue Books  ">
                      <graphic>
@@ -91,6 +103,45 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteBookButton" layoutX="10.0" layoutY="244.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="58.0" prefWidth="162.0" text="DeleteBook">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listBookBorrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteStudentButton" layoutX="10.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="58.0" prefWidth="162.0" text="Delete Student">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listBookBorrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="settingsButton" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="162.0" text="Settings">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listBookBorrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>

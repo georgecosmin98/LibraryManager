@@ -113,6 +113,15 @@ public class mainController implements Initializable {
         loadWindows("/list_student.fxml", "List student menu");
     }
 
+    public void deleteBook(ActionEvent actionEvent) throws IOException {
+        loadWindows("/delete_book.fxml", "Delete book menu");
+    }
+
+    public void deleteStudent(ActionEvent actionEvent) throws IOException {
+        loadWindows("/delete_student.fxml", "Delete student menu");
+    }
+
+
     public void listBorrowBook(ActionEvent actionEvent) {
         loadWindows("/list_bookborrow.fxml", "List borrow book");
     }
