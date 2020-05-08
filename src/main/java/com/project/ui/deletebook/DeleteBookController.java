@@ -4,6 +4,8 @@ import com.project.alert.makeAlert;
 import com.project.model.BookEntity;
 import com.project.model.BookStatus;
 import com.project.service.BookServiceImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,7 +28,7 @@ public class DeleteBookController implements Initializable {
     private Button deleteButton;
 
     @FXML
-    private ListView<BookEntity> listView;
+    private ListView<String> listView;
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
@@ -43,6 +46,20 @@ public class DeleteBookController implements Initializable {
     }
 
     public void loadBookInfo(ActionEvent actionEvent) {
+        ObservableList<String>  bookData = FXCollections.observableArrayList();
+        try{
+            BookEntity bookEntity =bookService.getBookRepository().searchBookByISBN(ISBN.getText());
+            bookData.add ("Info about this book: \n");
+            bookData.add ("Book Author: " + bookEntity.getBookAuthor());
+            bookData.add ("Book Title: " + bookEntity.getTitle());
+            bookData.add ("Book year of publication: " + bookEntity.getYearOfPublication());
+            bookData.add ("Book status: " + bookEntity.getStatus());
+        }
+        catch(NoResultException ex){
+            makeAlert.showMessageAlert("This book do not exist into database!");
+        }
+
+        listView.getItems().setAll(bookData);
     }
 
     @Override
