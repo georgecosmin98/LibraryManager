@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -85,6 +86,8 @@ public class mainController implements Initializable {
     @FXML
     private ListView<String> listSubmissionView;
 
+    @FXML
+    private StackPane mainController;
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
@@ -196,5 +199,12 @@ public class mainController implements Initializable {
             makeAlert.showMessageAlert("This isbn is incorrect or this book is already returned!");
 
         listSubmissionView.getItems().setAll(issueData);
+    }
+
+    public void logOut(ActionEvent actionEvent) {
+        loadWindows("/login.fxml","Login Screen");
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        stage.close();
+
     }
 }

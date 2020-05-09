@@ -1,9 +1,11 @@
 package com.project.ui.adminmain;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -11,6 +13,10 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class AdminController {
+
+    @FXML
+    private AnchorPane mainController;
+
     public void addlibrarian(ActionEvent actionEvent) {
         loadWindows("/add_librarian.fxml", "Add librarian menu");
     }
@@ -35,5 +41,11 @@ public class AdminController {
             System.out.println(ex.toString());
             System.out.println("Could not open " + windowsTitle);
         }
+    }
+
+    public void logOut(ActionEvent actionEvent) {
+        loadWindows("/login.fxml","Login Screen");
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        stage.close();
     }
 }

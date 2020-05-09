@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.main.mainController">
+<StackPane fx:id="mainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.main.mainController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="900.0" styleClass="BorderPane">
          <top>
@@ -132,6 +132,18 @@
                      </font>
                   </Button>
                   <Button fx:id="settingsButton" contentDisplay="TOP" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="162.0" text="Settings">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listBookBorrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logOutButton" contentDisplay="TOP" layoutX="10.0" layoutY="536.0" mnemonicParsing="false" onAction="#logOut" prefHeight="75.0" prefWidth="162.0" text="Log Out">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -293,7 +305,8 @@
                                     </Button>
                                  </bottom>
                               </BorderPane>
-                           </children></AnchorPane>
+                           </children>
+                        </AnchorPane>
                   </content>
                 </Tab>
               </tabs>
