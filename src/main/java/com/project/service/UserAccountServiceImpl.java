@@ -2,7 +2,7 @@ package com.project.service;
 
 import com.project.model.TypeOfUser;
 import com.project.model.UserAccountEntity;
-import com.project.repository.UserAccountRepositoryImpl;
+import com.project.repository.api.UserAccountRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +13,14 @@ import javax.annotation.Resource;
 public class UserAccountServiceImpl {
 
     @Resource
-    private UserAccountRepositoryImpl userAccountRepository;
+    private UserAccountRepository userAccountRepository;
 
     public UserAccountEntity createUser(String username, String password, TypeOfUser typeOfUser){
         UserAccountEntity userAccountEntity = new UserAccountEntity(username,password,typeOfUser);
         return userAccountRepository.create(userAccountEntity);
     }
 
-    public UserAccountRepositoryImpl getUserAccountRepository(){
+    public UserAccountRepository getUserAccountRepository(){
         return userAccountRepository;
     }
 }

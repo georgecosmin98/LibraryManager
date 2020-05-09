@@ -1,7 +1,7 @@
 package com.project.service;
 
 import com.project.model.StudentEntity;
-import com.project.repository.StudentRepositoryImpl;
+import com.project.repository.api.StudentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 public class StudentServiceImpl{
 
     @Resource
-    private StudentRepositoryImpl studentRepository;
+    private StudentRepository studentRepository;
 
 
     public StudentEntity createStudent(String sid, String studentName, String phoneNumber, String address, String emailAddress) {
@@ -25,7 +25,7 @@ public class StudentServiceImpl{
         studentRepository.deleteStudent(sid);
     }
 
-    public StudentRepositoryImpl getStudentRepository() {
+    public StudentRepository getStudentRepository() {
         return studentRepository;
     }
 }

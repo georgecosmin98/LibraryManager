@@ -2,7 +2,7 @@ package com.project.service;
 
 import com.project.model.BookEntity;
 import com.project.model.BookStatus;
-import com.project.repository.BookRepositoryImpl;
+import com.project.repository.api.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 public class BookServiceImpl{
 
     @Resource
-    private BookRepositoryImpl bookRepository;
+    private BookRepository bookRepository;
 
     public BookEntity createBook(String isbn, String title, String bookAuthor, Date yearOfPublication, BookStatus status) {
         BookEntity newBook = new BookEntity(isbn, title, bookAuthor, yearOfPublication, status);
@@ -28,7 +28,7 @@ public class BookServiceImpl{
     public void updateBookStatus(String isbn, BookStatus status){
         bookRepository.updateBookStatus(isbn,status);
     }
-    public BookRepositoryImpl getBookRepository() {
+    public BookRepository getBookRepository() {
         return bookRepository;
     }
 }
