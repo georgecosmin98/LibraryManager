@@ -24,7 +24,7 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     }
 
     @Override
-    public void deleteUserAccount(String id) {
+    public void deleteUserAccount(long id) {
         Query query = this.entityManager.createQuery("select u from UserAccountEntity u where u.id =: id");
         query.setParameter("id", id);
         entityManager.remove(query.getSingleResult());

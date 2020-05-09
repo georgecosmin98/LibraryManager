@@ -33,7 +33,7 @@ public class DeleteLibrarianController implements Initializable {
 
     public void deleteLibrarian(ActionEvent actionEvent) {
         try {
-            librarianService.getLibrarianRepository().deleteLibrarian(librarianName.getText());
+            librarianService.deleteLibrarian(librarianName.getText());
         } catch (Exception ex) {
             System.out.println("This user do not exist into database!");
         }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserAccountRepository {
 
     UserAccountEntity create(UserAccountEntity userToCreate);
-    void deleteUserAccount(String id);
+    void deleteUserAccount(long id);
     List<UserAccountEntity> displayAllUsers();
     List<UserAccountEntity> searchUser(String username, String password);
 

@@ -56,7 +56,7 @@ public class ListLibrarianController implements Initializable {
     public List<LibrarianEntity> createLibrarianList(List<LibrarianEntity> allLibrarians){
         List<LibrarianEntity> librararianList = allLibrarians;
         for (LibrarianEntity l : librararianList){
-            list.add(new LibrarianEntity(l.getLibrarianName(),l.getPhoneNumber(),l.getAddress(),l.getEmailAddress()));
+            list.add(new LibrarianEntity(l.getLibrarianName(),l.getPhoneNumber(),l.getAddress(),l.getEmailAddress(),l.getUserAccountEntity()));
         }
         return list;
     }

@@ -42,8 +42,10 @@ public class AddLibrarianController {
                 || username.getText().isEmpty() || password.getText().isEmpty()) {
             makeAlert.showMessageAlert("Please fill all fields!");
         } else {
-            librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText());
-            userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN);
+
+            librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
+                    userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
+
         }
     }
 }

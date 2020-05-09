@@ -1,7 +1,6 @@
 package com.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_librarian")
@@ -11,14 +10,26 @@ public class LibrarianEntity extends AbstractBaseEntity {
     private String address;
     private String emailAddress;
 
+    @OneToOne(targetEntity = UserAccountEntity.class, fetch = FetchType.EAGER)
+    private UserAccountEntity userAccountEntity;
+
+    public UserAccountEntity getUserAccountEntity() {
+        return userAccountEntity;
+    }
+
+    public void setUserAccountEntity(UserAccountEntity userAccountEntity) {
+        this.userAccountEntity = userAccountEntity;
+    }
+
     public LibrarianEntity() {
     }
 
-    public LibrarianEntity(String librarianName, String phoneNumber, String address, String emailAddress) {
+    public LibrarianEntity(String librarianName, String phoneNumber, String address, String emailAddress,UserAccountEntity userAccountEntity) {
         this.librarianName = librarianName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.emailAddress = emailAddress;
+        this.userAccountEntity=userAccountEntity;
     }
 
     public String getLibrarianName() {

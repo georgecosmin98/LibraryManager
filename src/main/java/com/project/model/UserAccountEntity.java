@@ -1,11 +1,10 @@
 package com.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_useraccount")
-public class UserAccountEntity extends AbstractBaseEntity {
+public class UserAccountEntity extends AbstractBaseEntity{
 
     private String username;
     private String password;
