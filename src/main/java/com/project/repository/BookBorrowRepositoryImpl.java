@@ -45,4 +45,11 @@ public class BookBorrowRepositoryImpl implements BookBorrowRepository {
         query.setParameter("stats", BookBorrowStatus.ISSUED);
         return (BookBorrowEntity) query.getSingleResult();
     }
+
+    public List <BookBorrowEntity> searchBookBySID(String sid) {
+        Query query = this.entityManager.createQuery("select b from BookBorrowEntity b where b.sid =:sid  and b.status =: stats");
+        query.setParameter("sid", sid);
+        query.setParameter("stats", BookBorrowStatus.ISSUED);
+        return query.getResultList();
+    }
 }

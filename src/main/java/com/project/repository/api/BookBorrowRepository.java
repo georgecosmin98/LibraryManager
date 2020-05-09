@@ -7,8 +7,13 @@ import java.util.List;
 
 public interface BookBorrowRepository {
 
-    public BookBorrowEntity create(BookBorrowEntity borrowToCreate);
-    public List<BookBorrowEntity> displayAllBookBorrow();
-    public void updateBookBorrowStatus(String isbn, BookBorrowStatus status);
-    public BookBorrowEntity searchBookByISBN(String isbn);
+    BookBorrowEntity create(BookBorrowEntity borrowToCreate);
+
+    List<BookBorrowEntity> displayAllBookBorrow();
+
+    void updateBookBorrowStatus(String isbn, BookBorrowStatus status);
+
+    BookBorrowEntity searchBookByISBN(String isbn);
+
+    List <BookBorrowEntity> searchBookBySID(String sid);
 }

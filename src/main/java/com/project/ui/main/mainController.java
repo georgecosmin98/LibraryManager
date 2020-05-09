@@ -26,6 +26,7 @@ import javafx.stage.StageStyle;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.persistence.NoResultException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -124,6 +125,10 @@ public class mainController implements Initializable {
         loadWindows("/delete_student.fxml", "Delete student menu");
     }
 
+    public void settings(ActionEvent actionEvent) throws IOException{
+        loadWindows("/settings.fxml","Settings menu");
+    }
+
 
     public void listBorrowBook(ActionEvent actionEvent) {
         loadWindows("/list_bookborrow.fxml", "List borrow book");
@@ -144,16 +149,25 @@ public class mainController implements Initializable {
     }
 
     public void loadBookInfo(ActionEvent event) {
-
+        try{
         bookName.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getTitle());
         bookAuthor.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getBookAuthor());
         status.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().toString());
+    }catch(NoResultException ex){
+            makeAlert.showMessageAlert("This book do not exist into database!");
+        }
     }
 
     public void loadStudentInfo(ActionEvent actionEvent) {
-        studentName.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getStudentName());
-        phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
-        Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
+
+        try {
+            studentName.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getStudentName());
+
+            phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
+            Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
+        }catch (NoResultException ex){
+            makeAlert.showMessageAlert("This student do not exist into database!");
+        }
     }
 
     public void issueBook(ActionEvent actionEvent) throws ParseException {
@@ -173,36 +187,38 @@ public class mainController implements Initializable {
         if (bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText()).getStatus().equals(BookStatus.NOTAVAILABLE)) {
             bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
-        }
-         else
-             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
+        } else
+            makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
     }
 
     public void loadSubmissionInfo(ActionEvent actionEvent) {
 
-        ObservableList<String> issueData = FXCollections.observableArrayList();
-        BookBorrowEntity bookBorrowEntity = bookBorrowService.getBookBorrowRepository().searchBookByISBN(isbnSubmission.getText());
-        BookEntity bookEntity = bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText());
-        StudentEntity studentEntity = studentService.getStudentRepository().searchStudentBySID(bookBorrowEntity.getSid());
+        try {
+            ObservableList<String> issueData = FXCollections.observableArrayList();
+            BookBorrowEntity bookBorrowEntity = bookBorrowService.getBookBorrowRepository().searchBookByISBN(isbnSubmission.getText());
+            BookEntity bookEntity = bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText());
+            StudentEntity studentEntity = studentService.getStudentRepository().searchStudentBySID(bookBorrowEntity.getSid());
 
-        if (bookBorrowEntity.getStatus().equals(BookBorrowStatus.ISSUED)) {
-            issueData.add("Issue Date and Time: " + bookBorrowEntity.getLoanDate());
-            issueData.add("Book Information: ");
-            issueData.add("Book Title: " + bookEntity.getTitle());
-            issueData.add("Book Author: " + bookEntity.getBookAuthor());
-            issueData.add("Student Information: ");
-            issueData.add("Student Name: " + studentEntity.getStudentName());
-            issueData.add("Student Phone Number: " + studentEntity.getPhoneNumber());
-            issueData.add("Student Email: " + studentEntity.getEmailAddress());
+            if (bookBorrowEntity.getStatus().equals(BookBorrowStatus.ISSUED)) {
+                issueData.add("Issue Date and Time: " + bookBorrowEntity.getLoanDate());
+                issueData.add("Book Information: ");
+                issueData.add("Book Title: " + bookEntity.getTitle());
+                issueData.add("Book Author: " + bookEntity.getBookAuthor());
+                issueData.add("Student Information: ");
+                issueData.add("Student Name: " + studentEntity.getStudentName());
+                issueData.add("Student Phone Number: " + studentEntity.getPhoneNumber());
+                issueData.add("Student Email: " + studentEntity.getEmailAddress());
+            } else
+                makeAlert.showMessageAlert("This isbn is incorrect or this book is already returned!");
+
+            listSubmissionView.getItems().setAll(issueData);
+        } catch (NoResultException ex) {
+            makeAlert.showMessageAlert("This book is not borrowed or do not exist into database!");
         }
-        else
-            makeAlert.showMessageAlert("This isbn is incorrect or this book is already returned!");
-
-        listSubmissionView.getItems().setAll(issueData);
     }
 
     public void logOut(ActionEvent actionEvent) {
-        loadWindows("/login.fxml","Login Screen");
+        loadWindows("/login.fxml", "Login Screen");
         Stage stage = (Stage) mainController.getScene().getWindow();
         stage.close();
 

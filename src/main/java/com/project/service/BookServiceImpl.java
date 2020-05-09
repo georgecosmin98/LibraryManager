@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class BookServiceImpl{
+public class BookServiceImpl {
 
     @Resource
     private BookRepository bookRepository;
@@ -25,9 +25,11 @@ public class BookServiceImpl{
         bookRepository.deleteBook(title);
     }
 
-    public void updateBookStatus(String isbn, BookStatus status){
-        bookRepository.updateBookStatus(isbn,status);
+    public void updateBookStatus(String isbn, BookStatus status) {
+        bookRepository.updateBookStatus(isbn, status);
     }
+
+
     public BookRepository getBookRepository() {
         return bookRepository;
     }
