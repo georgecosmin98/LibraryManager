@@ -33,12 +33,12 @@ public class Settings {
             writer = new FileWriter(SETTINGS_FILE);
             gson.toJson(settings, writer);
         } catch (IOException ex) {
-            Logger.getLogger(Preferences.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 writer.close();
             } catch (IOException ex) {
-                Logger.getLogger(Preferences.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -50,7 +50,7 @@ public class Settings {
         try {
             settings = gson.fromJson(new FileReader(SETTINGS_FILE), Settings.class);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Preferences.class.getName()).info("Config file is missing. Creating new one with default config");
+            Logger.getLogger(Settings.class.getName()).info("Config file is missing. Creating new one with default config");
             initConfig();
         }
         return settings;
@@ -65,13 +65,13 @@ public class Settings {
 
             makeAlert.showMessageAlert("Settings updated succesfully");
         } catch (IOException ex) {
-            Logger.getLogger(Preferences.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
             makeAlert.showMessageAlert ("Cant save configuration file");
         } finally {
             try {
                 writer.close();
             } catch (IOException ex) {
-                Logger.getLogger(Preferences.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

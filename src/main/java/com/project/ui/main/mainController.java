@@ -177,6 +177,7 @@ public class mainController implements Initializable {
         if (bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
             bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date), BookBorrowStatus.ISSUED);
             bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
+
         } else {
             makeAlert.showMessageAlert("This book is not available!");
         }
@@ -185,8 +186,12 @@ public class mainController implements Initializable {
     public void returnBook(ActionEvent actionEvent) {
 
         if (bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText()).getStatus().equals(BookStatus.NOTAVAILABLE)) {
+            long fineAmmount= bookBorrowService.fine(bookISBNinput.getText());
+            if (fineAmmount>0)
+                makeAlert.showMessageAlert("You must pay a fine of: " + fineAmmount);
             bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
+
         } else
             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
     }
