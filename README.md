@@ -1,5 +1,4 @@
 # LibraryManager
-Project for IPDP in JAVA
 
 Scop:
  	Pentru a tine pasul cu tendintele actuale, bibliotecile trebuie sa fie gestionate computerizat
