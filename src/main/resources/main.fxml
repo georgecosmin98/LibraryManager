@@ -111,7 +111,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/removeBook.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -123,7 +123,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/removeUser.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -135,7 +135,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -147,7 +147,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/logOut.png" />
                            </image>
                         </ImageView>
                      </graphic>
