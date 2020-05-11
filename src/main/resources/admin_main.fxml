@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,34 +15,62 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="addLibrarianButton" mnemonicParsing="false" onAction="#addlibrarian" prefHeight="60.0" prefWidth="150.0" text="Add Librarian">
+                  <Button fx:id="addLibrarianButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#addlibrarian" prefHeight="60.0" prefWidth="150.0" text="Add Librarian">
                      <font>
                         <Font size="13.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="50.0" top="25.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/addLibrarian.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="listLibrarianButton" layoutX="250.0" layoutY="145.0" mnemonicParsing="false" onAction="#listlibrarian" prefHeight="60.0" prefWidth="150.0" text="List Librarian">
+                  <Button fx:id="listLibrarianButton" contentDisplay="TOP" layoutX="250.0" layoutY="145.0" mnemonicParsing="false" onAction="#listlibrarian" prefHeight="60.0" prefWidth="150.0" text="List Librarian">
                      <font>
                         <Font size="13.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/listStudent.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="deleteLibrarianButton" layoutX="250.0" layoutY="132.0" mnemonicParsing="false" onAction="#deletelibrarian" prefHeight="60.0" prefWidth="150.0" text="Delete Librarian">
+                  <Button fx:id="deleteLibrarianButton" contentDisplay="TOP" layoutX="250.0" layoutY="132.0" mnemonicParsing="false" onAction="#deletelibrarian" prefHeight="60.0" prefWidth="150.0" text="Delete Librarian">
                      <font>
                         <Font size="13.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="50.0" />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/removeUser.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="logOutButton" layoutX="250.0" layoutY="292.0" mnemonicParsing="false" onAction="#logOut" prefHeight="60.0" prefWidth="150.0" text="Log Out">
+                  <Button fx:id="logOutButton" contentDisplay="TOP" layoutX="250.0" layoutY="292.0" mnemonicParsing="false" onAction="#logOut" prefHeight="60.0" prefWidth="150.0" text="Log Out">
                      <font>
                         <Font size="13.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@font/logOut.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>

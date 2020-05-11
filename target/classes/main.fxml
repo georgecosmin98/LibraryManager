@@ -111,7 +111,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/removeBook.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -123,7 +123,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/removeUser.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -135,7 +135,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -147,7 +147,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@font/listBookBorrow.png" />
+                              <Image url="@font/logOut.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -159,7 +159,7 @@
             </VBox>
          </left>
          <center>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane prefHeight="200.0" prefWidth="200.0" styleClass="tabPanee" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab text="Book Issue">
                   <content>
@@ -218,7 +218,7 @@
                                                       <Insets bottom="10.0" />
                                                    </VBox.margin>
                                                 </Text>
-                                                <Text fx:id="phoneNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="CENTER">
+                                                <Text fx:id="phoneNumber" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFF8D;" text="Phone Number" textAlignment="CENTER">
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font>
@@ -226,7 +226,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Text>
-                                                <Text fx:id="Email" layoutX="161.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="CENTER">
+                                                <Text fx:id="Email" layoutX="161.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFF8D;" text="Email" textAlignment="CENTER">
                                                    <font>
                                                       <Font size="13.0" />
                                                    </font>
@@ -249,9 +249,9 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0">
                                        <children>
-                                          <Button fx:id="issueButton" mnemonicParsing="false" onAction="#issueBook" prefHeight="35.0" prefWidth="100.0" text="Issue">
+                                          <Button fx:id="issueButton" mnemonicParsing="false" onAction="#issueBook" prefHeight="40.0" prefWidth="100.0" styleClass="roundButton" text="Issue">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="10.0" />
+                                                <Insets top="10.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -260,6 +260,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
                                           </Button>
                                        </children>
                                        <VBox.margin>
@@ -291,9 +294,9 @@
                                     </TextField>
                                  </top>
                                  <bottom>
-                                    <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnBook" prefHeight="35.0" prefWidth="100.0" text="Return " BorderPane.alignment="CENTER">
+                                    <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnBook" prefHeight="40.0" prefWidth="100.0" styleClass="roundButton" text="Return " BorderPane.alignment="CENTER">
                                        <BorderPane.margin>
-                                          <Insets bottom="10.0" top="10.0" />
+                                          <Insets bottom="20.0" top="20.0" />
                                        </BorderPane.margin>
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -302,6 +305,9 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
                                     </Button>
                                  </bottom>
                               </BorderPane>

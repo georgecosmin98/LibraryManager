@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="750.0" stylesheets="@dark_skin.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.deletestudent.DeleteStudentController">
+   <children>
+      <BorderPane prefHeight="450.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <TextField fx:id="studentSid" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#loadStudentInfo" prefHeight="30.0" prefWidth="200.0" promptText="Stundent SID" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+            </TextField>
+         </top>
+         <bottom>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="35.0" prefWidth="100.0" text="Delete" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </bottom>
+         <center>
+            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
