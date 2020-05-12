@@ -18,8 +18,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
-public class listBookBorrowController implements Initializable {
+public class ListBookBorrowController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
@@ -47,8 +48,18 @@ public class listBookBorrowController implements Initializable {
 
     ObservableList<BookBorrowEntity> list = FXCollections.observableArrayList();
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(ListBookBorrowController.class.getName());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Initialize column");
         initCol();
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
         BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
