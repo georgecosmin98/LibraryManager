@@ -3,7 +3,6 @@ package com.project.ui.login;
 import com.project.alert.makeAlert;
 import com.project.model.TypeOfUser;
 import com.project.service.UserAccountServiceImpl;
-import com.project.ui.listbook.ListBookController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,7 +29,7 @@ public class LoginController implements Initializable {
         System.setProperty("java.util.logging.config.file",
                 "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
         //must initialize loggers after setting above property
-        logger = Logger.getLogger(ListBookController.class.getName());
+        logger = Logger.getLogger(LoginController.class.getName());
     }
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");

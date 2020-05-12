@@ -34,8 +34,9 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
-public class mainController implements Initializable {
+public class MainController implements Initializable {
     @FXML
     private Button listbook;
 
@@ -90,6 +91,15 @@ public class mainController implements Initializable {
     @FXML
     private StackPane mainController;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(MainController.class.getName());
+    }
+
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
@@ -125,8 +135,8 @@ public class mainController implements Initializable {
         loadWindows("/delete_student.fxml", "Delete student menu");
     }
 
-    public void settings(ActionEvent actionEvent) throws IOException{
-        loadWindows("/settings.fxml","Settings menu");
+    public void settings(ActionEvent actionEvent) throws IOException {
+        loadWindows("/settings.fxml", "Settings menu");
     }
 
 
@@ -143,18 +153,18 @@ public class mainController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
             stage.show();
         } catch (IOException ex) {
-            System.out.println(ex.toString());
-            System.out.println("Could not open " + windowsTitle);
+            logger.severe("Could not open " + windowsTitle);
         }
     }
 
     public void loadBookInfo(ActionEvent event) {
-        try{
-        bookName.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getTitle());
-        bookAuthor.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getBookAuthor());
-        status.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().toString());
-    }catch(NoResultException ex){
+        try {
+            bookName.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getTitle());
+            bookAuthor.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getBookAuthor());
+            status.setText(bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().toString());
+        } catch (NoResultException ex) {
             makeAlert.showMessageAlert("This book do not exist into database!");
+            logger.warning("This book do not exist into database!");
         }
     }
 
@@ -165,8 +175,9 @@ public class mainController implements Initializable {
 
             phoneNumber.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getPhoneNumber());
             Email.setText(studentService.getStudentRepository().searchStudentBySID(studentIDinput.getText()).getEmailAddress());
-        }catch (NoResultException ex){
+        } catch (NoResultException ex) {
             makeAlert.showMessageAlert("This student do not exist into database!");
+            logger.warning("This student do not exist into database!");
         }
     }
 
@@ -180,20 +191,25 @@ public class mainController implements Initializable {
 
         } else {
             makeAlert.showMessageAlert("This book is not available!");
+            logger.warning("This book is not available");
         }
     }
 
     public void returnBook(ActionEvent actionEvent) {
 
         if (bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText()).getStatus().equals(BookStatus.NOTAVAILABLE)) {
-            long fineAmmount= bookBorrowService.fine(bookISBNinput.getText());
-            if (fineAmmount>0)
+            long fineAmmount = bookBorrowService.fine(bookISBNinput.getText());
+            if (fineAmmount > 0) {
                 makeAlert.showMessageAlert("You must pay a fine of: " + fineAmmount);
+                logger.info("Pay fine");
+            }
             bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
 
-        } else
+        } else {
             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
+            logger.info("Trying to return an invalid book or already returned");
+        }
     }
 
     public void loadSubmissionInfo(ActionEvent actionEvent) {
@@ -213,18 +229,21 @@ public class mainController implements Initializable {
                 issueData.add("Student Name: " + studentEntity.getStudentName());
                 issueData.add("Student Phone Number: " + studentEntity.getPhoneNumber());
                 issueData.add("Student Email: " + studentEntity.getEmailAddress());
-            } else
+            } else {
                 makeAlert.showMessageAlert("This isbn is incorrect or this book is already returned!");
-
+                logger.info("Trying to return an invalid book or already returned!");
+            }
             listSubmissionView.getItems().setAll(issueData);
         } catch (NoResultException ex) {
             makeAlert.showMessageAlert("This book is not borrowed or do not exist into database!");
+            logger.info("Book do not exist or is not borrowed");
         }
     }
 
     public void logOut(ActionEvent actionEvent) {
         loadWindows("/login.fxml", "Login Screen");
         Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Log out");
         stage.close();
 
     }
