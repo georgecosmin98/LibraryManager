@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class AddBookController implements Initializable {
     @FXML
@@ -52,6 +53,15 @@ public class AddBookController implements Initializable {
     @FXML
     private StackPane rootPane;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(AddBookController.class.getName());
+    }
+
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
@@ -69,6 +79,7 @@ public class AddBookController implements Initializable {
 
         if (isbn.getText().isEmpty() || bookauthor.getText().isEmpty() || title.getText().isEmpty() || data.getValue() == null) {
             makeAlert.showMessageAlert("Please fill all fields!");
+            logger.warning("Not all fields were completed!");
             return;
         }
         String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -78,6 +89,7 @@ public class AddBookController implements Initializable {
 
     public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage!");
         stage.close();
     }
 }
