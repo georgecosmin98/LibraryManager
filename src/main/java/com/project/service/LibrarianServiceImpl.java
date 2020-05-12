@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.logging.Logger;
 
 @Service
 @Transactional
@@ -17,14 +18,27 @@ public class LibrarianServiceImpl {
     LibrarianRepository librarianRepository;
     @Resource
     UserAccountRepository userAccountRepository;
+
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(LibrarianServiceImpl.class.getName());
+    }
+
     public LibrarianEntity createLibrarian(String librarianName, String phoneNumber, String address, String email, UserAccountEntity userAccountEntity) {
         LibrarianEntity newLibrarian = new LibrarianEntity(librarianName, phoneNumber, address, email, userAccountEntity);
+        logger.info("Creating new librarian");
         return librarianRepository.create(newLibrarian);
     }
 
     public void deleteLibrarian(String name){
         LibrarianEntity deleteLibrarian = librarianRepository.searchLibrarianByName(name);
+        logger.info("Deleting librarian from databse");
         librarianRepository.deleteLibrarian(deleteLibrarian.getLibrarianName());
+        logger.info("Deleting user account from database");
         userAccountRepository.deleteUserAccount(deleteLibrarian.getUserAccountEntity().getId());
     }
     public LibrarianRepository getLibrarianRepository() {
