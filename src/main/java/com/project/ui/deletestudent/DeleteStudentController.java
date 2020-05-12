@@ -18,6 +18,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class DeleteStudentController implements Initializable {
 
@@ -29,6 +30,15 @@ public class DeleteStudentController implements Initializable {
 
     @FXML
     private ListView<String> listView;
+
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(DeleteStudentController.class.getName());
+    }
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
@@ -52,7 +62,7 @@ public class DeleteStudentController implements Initializable {
 
             listView.getItems().setAll(studentData);
         } catch (NoResultException ex) {
-            System.out.println("This name do not exist into database!");
+            logger.warning("This name do not exist into database!");
         }
     }
 
@@ -64,9 +74,11 @@ public class DeleteStudentController implements Initializable {
             }
             else
             {
+                logger.warning("This student do not return all books!");
                 makeAlert.showMessageAlert("This student do not return all books!");
             }
         } catch (NoResultException ex) {
+            logger.warning("This student do not exist");
             makeAlert.showMessageAlert("This student do not exist");
         }
     }
