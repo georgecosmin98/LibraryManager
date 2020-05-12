@@ -2,7 +2,6 @@ package com.project.ui.listlibrarian;
 
 import com.project.model.LibrarianEntity;
 import com.project.service.LibrarianServiceImpl;
-import com.project.ui.listbook.ListBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,7 +44,7 @@ public class ListLibrarianController implements Initializable {
         System.setProperty("java.util.logging.config.file",
                 "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
         //must initialize loggers after setting above property
-        logger = Logger.getLogger(ListBookController.class.getName());
+        logger = Logger.getLogger(ListLibrarianController.class.getName());
     }
 
     ObservableList<LibrarianEntity> list = FXCollections.observableArrayList();
