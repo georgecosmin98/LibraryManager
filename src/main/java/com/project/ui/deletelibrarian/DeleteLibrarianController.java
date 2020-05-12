@@ -15,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.persistence.NoResultException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class DeleteLibrarianController implements Initializable {
     @FXML
@@ -22,6 +23,15 @@ public class DeleteLibrarianController implements Initializable {
 
     @FXML
     private ListView<String> listView;
+
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(DeleteLibrarianController.class.getName());
+    }
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     LibrarianServiceImpl librarianService = (LibrarianServiceImpl) context.getBean(LibrarianServiceImpl.class);
@@ -35,7 +45,7 @@ public class DeleteLibrarianController implements Initializable {
         try {
             librarianService.deleteLibrarian(librarianName.getText());
         } catch (Exception ex) {
-            System.out.println("This user do not exist into database!");
+            logger.warning("This user do not exist into database!");
         }
     }
 
@@ -52,7 +62,7 @@ public class DeleteLibrarianController implements Initializable {
 
             listView.getItems().setAll(librarianData);
         } catch (NoResultException ex) {
-            System.out.println("This name do not exist into database!");
+           logger.warning("This name do not exist into database!");
         }
     }
 }
