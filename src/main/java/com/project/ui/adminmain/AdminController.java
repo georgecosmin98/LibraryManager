@@ -11,11 +11,21 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class AdminController {
 
     @FXML
     private AnchorPane mainController;
+
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(AdminController.class.getName());
+    }
 
     public void addlibrarian(ActionEvent actionEvent) {
         loadWindows("/add_librarian.fxml", "Add librarian menu");
@@ -38,14 +48,14 @@ public class AdminController {
             stage.initModality(Modality.APPLICATION_MODAL); //Blocheaza parintele pana e inchisa scena copilului
             stage.show();
         } catch (IOException ex) {
-            System.out.println(ex.toString());
-            System.out.println("Could not open " + windowsTitle);
+            logger.severe("Could not open: " + windowsTitle);
         }
     }
 
     public void logOut(ActionEvent actionEvent) {
         loadWindows("/login.fxml","Login Screen");
         Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage");
         stage.close();
     }
 }
