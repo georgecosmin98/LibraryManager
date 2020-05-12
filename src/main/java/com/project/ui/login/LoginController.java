@@ -3,6 +3,7 @@ package com.project.ui.login;
 import com.project.alert.makeAlert;
 import com.project.model.TypeOfUser;
 import com.project.service.UserAccountServiceImpl;
+import com.project.ui.listbook.ListBookController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,10 +18,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class LoginController implements Initializable {
     public TextField username;
     public TextField password;
+
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(ListBookController.class.getName());
+    }
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     UserAccountServiceImpl userAccountService = (UserAccountServiceImpl) context.getBean(UserAccountServiceImpl.class);
@@ -33,12 +44,15 @@ public class LoginController implements Initializable {
     public void login(ActionEvent actionEvent) throws IOException, NullPointerException {
         if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).isEmpty()) {
             makeAlert.showMessageAlert("Username or password invalid!");
+            logger.warning("Username of password invalid!");
             return;
         } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).get(0).getTypeOfUser().equals(TypeOfUser.LIBRARIAN)) {
             closeStage();
+            logger.info("Librarian LogOn");
             loadMain();
         } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).get(0).getTypeOfUser().equals(TypeOfUser.ADMIN)) {
             closeStage();
+            logger.info("Admin LogOn");
             loadAdminMain();
         }
 

@@ -1,9 +1,6 @@
 package com.project.ui.liststudent;
 
-import com.project.model.BookEntity;
-import com.project.model.BookStatus;
 import com.project.model.StudentEntity;
-import com.project.service.BookServiceImpl;
 import com.project.service.StudentServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class ListStudentController implements Initializable {
 
@@ -43,10 +41,20 @@ public class ListStudentController implements Initializable {
     @FXML
     private TableColumn<StudentEntity, String> email;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(ListStudentController.class.getName());
+    }
+
     ObservableList<StudentEntity> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Initialize column");
         initCol();
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
         StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
