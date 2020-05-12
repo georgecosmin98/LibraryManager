@@ -7,7 +7,6 @@ import com.project.alert.makeAlert;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.prefs.Preferences;
 
 public class Settings {
     public static final String SETTINGS_FILE = "settings.txt";

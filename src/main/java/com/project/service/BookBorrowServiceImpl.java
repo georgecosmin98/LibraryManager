@@ -12,18 +12,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
 @Transactional
 public class BookBorrowServiceImpl {
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(BookBorrowServiceImpl.class.getName());
+    }
+
     @Resource
     private BookBorrowRepository bookBorrowRepository;
 
     public BookBorrowEntity createBookBorrow(String sid, String isbn, Date loanDate, Date submissionDate, BookBorrowStatus status) {
         BookBorrowEntity newBook = new BookBorrowEntity(sid, isbn, loanDate, submissionDate, status);
+        logger.info("Creating new book borrow");
         return bookBorrowRepository.create(newBook);
     }
 
@@ -32,6 +41,7 @@ public class BookBorrowServiceImpl {
     }
 
     public void updateBookBorrowStatus(String isbn, BookBorrowStatus status) {
+        logger.info("Update book");
         bookBorrowRepository.updateBookBorrowStatus(isbn, status);
     }
 
@@ -52,7 +62,7 @@ public class BookBorrowServiceImpl {
             else
                 fineToPay = fineCalculator(daysBetween);
         } catch (ParseException ex) {
-            Logger.getLogger(BookBorrowServiceImpl.class.getName()).log(Level.SEVERE, "Parse exception throws!", ex);
+            logger.severe("Parse exception throws!");
         }
         return fineToPay;
     }
