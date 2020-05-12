@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 
 public class ListBookController implements Initializable {
@@ -45,9 +46,19 @@ public class ListBookController implements Initializable {
     @FXML
     private TableColumn<BookEntity, BookStatus> statusCol;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(ListBookController.class.getName());
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Initialize column");
         initCol();
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
         BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
