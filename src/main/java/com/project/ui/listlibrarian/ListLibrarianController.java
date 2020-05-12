@@ -2,6 +2,7 @@ package com.project.ui.listlibrarian;
 
 import com.project.model.LibrarianEntity;
 import com.project.service.LibrarianServiceImpl;
+import com.project.ui.listbook.ListBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class ListLibrarianController implements Initializable {
 
@@ -37,10 +39,20 @@ public class ListLibrarianController implements Initializable {
     @FXML
     private TableColumn<LibrarianEntity, String> emailCol;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(ListBookController.class.getName());
+    }
+
     ObservableList<LibrarianEntity> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Initialize column");
         initCol();
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
         LibrarianServiceImpl librarianService = (LibrarianServiceImpl) context.getBean(LibrarianServiceImpl.class);
