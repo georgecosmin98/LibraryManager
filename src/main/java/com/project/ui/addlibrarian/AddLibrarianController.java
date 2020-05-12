@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.logging.Logger;
+
 public class AddLibrarianController {
     @FXML
     private TextField librarianName;
@@ -33,6 +35,15 @@ public class AddLibrarianController {
     @FXML
     private Button addButton;
 
+    private static Logger logger;
+
+    static {
+        System.setProperty("java.util.logging.config.file",
+                "C:\\Users\\ylyho\\OneDrive\\Documente\\GitHub\\LibraryManager\\src\\main\\resources\\log.properties");
+        //must initialize loggers after setting above property
+        logger = Logger.getLogger(AddLibrarianController.class.getName());
+    }
+
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     UserAccountServiceImpl userAccountService = (UserAccountServiceImpl) context.getBean(UserAccountServiceImpl.class);
     LibrarianServiceImpl librarianService = (LibrarianServiceImpl) context.getBean(LibrarianServiceImpl.class);
@@ -41,6 +52,7 @@ public class AddLibrarianController {
         if (librarianName.getText().isEmpty() || address.getText().isEmpty() || phoneNumber.getText().isEmpty() || email.getText().isEmpty()
                 || username.getText().isEmpty() || password.getText().isEmpty()) {
             makeAlert.showMessageAlert("Please fill all fields!");
+            logger.warning("Not all fields were completed!");
         } else {
 
             librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
