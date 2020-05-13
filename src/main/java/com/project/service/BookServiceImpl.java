@@ -32,6 +32,11 @@ public class BookServiceImpl {
         return bookRepository.create(newBook);
     }
 
+    public BookEntity createBook(BookEntity bookEntity) {
+        logger.info("Creating new book");
+        return bookRepository.create(bookEntity);
+    }
+
     public void deleteBook(String title) {
         logger.info("Deleting book from database");
         bookRepository.deleteBook(title);

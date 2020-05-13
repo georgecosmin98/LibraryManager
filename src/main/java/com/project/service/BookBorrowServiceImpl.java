@@ -31,9 +31,14 @@ public class BookBorrowServiceImpl {
     private BookBorrowRepository bookBorrowRepository;
 
     public BookBorrowEntity createBookBorrow(String sid, String isbn, Date loanDate, Date submissionDate, BookBorrowStatus status) {
-        BookBorrowEntity newBook = new BookBorrowEntity(sid, isbn, loanDate, submissionDate, status);
+       BookBorrowEntity newBook = new BookBorrowEntity(sid, isbn, loanDate, submissionDate, status);
         logger.info("Creating new book borrow");
         return bookBorrowRepository.create(newBook);
+    }
+
+    public BookBorrowEntity createBookBorrow(BookBorrowEntity bookBorrowEntity){
+        logger.info("Creating new book borrow");
+        return bookBorrowRepository.create(bookBorrowEntity);
     }
 
     public BookBorrowRepository getBookBorrowRepository() {
