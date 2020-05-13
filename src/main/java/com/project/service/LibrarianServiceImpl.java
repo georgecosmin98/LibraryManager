@@ -34,6 +34,11 @@ public class LibrarianServiceImpl {
         return librarianRepository.create(newLibrarian);
     }
 
+    public LibrarianEntity createLibrarian(LibrarianEntity librarianEntity) {
+        logger.info("Creating new librarian");
+        return librarianRepository.create(librarianEntity);
+    }
+
     public void deleteLibrarian(String name){
         LibrarianEntity deleteLibrarian = librarianRepository.searchLibrarianByName(name);
         logger.info("Deleting librarian from databse");

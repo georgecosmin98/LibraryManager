@@ -30,6 +30,11 @@ public class StudentServiceImpl{
         return studentRepository.create(newStudent);
     }
 
+    public StudentEntity createStudent(StudentEntity studentEntity) {
+        logger.info("Creating student");
+        return studentRepository.create(studentEntity);
+    }
+
 
     public void deleteStudent(String sid) {
         logger.info("Deleting student from database");
