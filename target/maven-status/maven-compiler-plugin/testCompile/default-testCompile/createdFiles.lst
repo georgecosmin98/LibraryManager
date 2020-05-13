@@ -1,1 +1,4 @@
+com\project\service\LibrarianServiceTest.class
 Test.class
+com\project\service\BookServiceTest.class
+com\project\service\BookBorrowServiceTest.class
