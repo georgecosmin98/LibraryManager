@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -41,15 +42,17 @@ public class LoginController implements Initializable {
 
 
     public void login(ActionEvent actionEvent) throws IOException, NullPointerException {
-        if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).isEmpty()) {
+
+        String SHAPassword = DigestUtils.shaHex(password.getText());
+        if (userAccountService.getUserAccountRepository().searchUser(username.getText(), SHAPassword).isEmpty()) {
             makeAlert.showMessageAlert("Username or password invalid!");
             logger.warning("Username of password invalid!");
             return;
-        } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).get(0).getTypeOfUser().equals(TypeOfUser.LIBRARIAN)) {
+        } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), SHAPassword).get(0).getTypeOfUser().equals(TypeOfUser.LIBRARIAN)) {
             closeStage();
             logger.info("Librarian LogOn");
             loadMain();
-        } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), password.getText()).get(0).getTypeOfUser().equals(TypeOfUser.ADMIN)) {
+        } else if (userAccountService.getUserAccountRepository().searchUser(username.getText(), SHAPassword).get(0).getTypeOfUser().equals(TypeOfUser.ADMIN)) {
             closeStage();
             logger.info("Admin LogOn");
             loadAdminMain();

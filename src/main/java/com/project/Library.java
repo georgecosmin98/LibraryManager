@@ -1,7 +1,5 @@
 package com.project;
 
-import com.project.service.BookBorrowServiceImpl;
-import com.project.service.BookServiceImpl;
 import com.project.service.UserAccountServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,9 +24,6 @@ public class Library {
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
 
         UserAccountServiceImpl userAccountService = (UserAccountServiceImpl) context.getBean(UserAccountServiceImpl.class);
-        BookBorrowServiceImpl bookBorrowService = (BookBorrowServiceImpl) context.getBean(BookBorrowServiceImpl.class);
-        BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
-        logger.info("Test");
 
     }
 }

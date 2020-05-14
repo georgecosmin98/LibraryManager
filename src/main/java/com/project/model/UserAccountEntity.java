@@ -1,6 +1,9 @@
 package com.project.model;
 
-import javax.persistence.*;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_useraccount")
@@ -15,7 +18,7 @@ public class UserAccountEntity extends AbstractBaseEntity{
 
     public UserAccountEntity(String username, String password, TypeOfUser typeOfUser) {
         this.username = username;
-        this.password = password;
+        this.password = DigestUtils.shaHex(password);
         this.typeOfUser = typeOfUser;
     }
 

@@ -31,6 +31,11 @@ public class UserAccountServiceImpl {
         return userAccountRepository.create(userAccountEntity);
     }
 
+    public UserAccountEntity createUser(UserAccountEntity userAccountEntity){
+        logger.info("Creating user account");
+        return userAccountRepository.create(userAccountEntity);
+    }
+
     public UserAccountRepository getUserAccountRepository(){
         return userAccountRepository;
     }
