@@ -18,7 +18,7 @@ public class UserAccountEntity extends AbstractBaseEntity{
 
     public UserAccountEntity(String username, String password, TypeOfUser typeOfUser) {
         this.username = username;
-        this.password = DigestUtils.shaHex(password);
+        this.password = DigestUtils.sha512Hex(password);
         this.typeOfUser = typeOfUser;
     }
 

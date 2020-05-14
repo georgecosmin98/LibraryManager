@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException, NullPointerException {
 
-        String SHAPassword = DigestUtils.shaHex(password.getText());
+        String SHAPassword = DigestUtils.sha512Hex(password.getText());
         if (userAccountService.getUserAccountRepository().searchUser(username.getText(), SHAPassword).isEmpty()) {
             makeAlert.showMessageAlert("Username or password invalid!");
             logger.warning("Username of password invalid!");

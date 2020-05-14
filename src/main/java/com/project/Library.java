@@ -24,6 +24,5 @@ public class Library {
         ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
 
         UserAccountServiceImpl userAccountService = (UserAccountServiceImpl) context.getBean(UserAccountServiceImpl.class);
-
     }
 }

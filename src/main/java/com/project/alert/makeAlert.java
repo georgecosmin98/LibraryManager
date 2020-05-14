@@ -1,5 +1,6 @@
 package com.project.alert;
 
+
 import javafx.scene.control.Alert;
 
 public class makeAlert {
