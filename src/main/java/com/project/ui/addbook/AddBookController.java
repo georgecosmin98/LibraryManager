@@ -1,5 +1,6 @@
 package com.project.ui.addbook;
 
+import com.project.Validator.NameValidator;
 import com.project.alert.makeAlert;
 import com.project.model.BookStatus;
 import com.project.service.BookServiceImpl;
@@ -67,6 +68,7 @@ public class AddBookController implements Initializable {
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     ISBNValidator isbnValidator = new ISBNValidator();
+
     @FXML
     void initialize() {
     }
@@ -78,20 +80,33 @@ public class AddBookController implements Initializable {
 
     public void addBook(ActionEvent actionEvent) throws ParseException {
 
-        if (isbn.getText().isEmpty() || bookauthor.getText().isEmpty() || title.getText().isEmpty() || data.getValue() == null) {
-            makeAlert.showMessageAlert("Please fill all fields!");
-            logger.warning("Not all fields were completed!");
-            return;
-        }
-        if (isbnValidator.isValid(isbn.getText())) {
+        if (validateBook()) {
             String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
-        } else {
-            makeAlert.showMessageAlert("ISBN INVALID!");
-            logger.warning("ISBN INVALID");
         }
     }
 
+    public boolean validateBook() {
+
+        if (isbn.getText().isEmpty() || bookauthor.getText().isEmpty() || title.getText().isEmpty() || data.getValue() == null) {
+            makeAlert.showMessageAlert("Please fill all fields!");
+            logger.warning("Not all fields were completed!");
+            return false;
+        }
+
+        if (isbnValidator.isValid(isbn.getText()) == false) {
+            makeAlert.showMessageAlert("ISBN INVALID!");
+            logger.warning("ISBN INVALID");
+            return false;
+        }
+
+        if (NameValidator.isValid(bookauthor.getText()) == false) {
+            makeAlert.showMessageAlert("Invalid book author name");
+            logger.warning("Invalid book author name");
+            return false;
+        }
+        return true;
+    }
 
     public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) mainController.getScene().getWindow();
