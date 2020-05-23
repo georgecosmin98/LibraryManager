@@ -1,5 +1,6 @@
 package com.project.ui.settings;
 
+import com.project.alert.makeAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ public class SettingsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initDefaultValues();
     }
+
     private void initDefaultValues() {
         Settings settings = Settings.getSettings();
         finePerDay.setText(String.valueOf(settings.getFinePerDay()));
@@ -34,8 +36,13 @@ public class SettingsController implements Initializable {
         float fine = Float.parseFloat(finePerDay.getText());
 
         Settings settings = Settings.getSettings();
-        settings.setFinePerDay(fine);
-
-        Settings.writeSettingsToFile(settings);
+        if (fine > 0) {
+            settings.setFinePerDay(fine);
+            Settings.writeSettingsToFile(settings);
+        }
+        else
+        {
+            makeAlert.showMessageAlert("Fine per day can't be negative!");
+        }
     }
 }
