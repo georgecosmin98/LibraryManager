@@ -1,5 +1,6 @@
 package com.project.ui.addstudent;
 
+import com.project.Validator.AddressValidator;
 import com.project.Validator.NameValidator;
 import com.project.Validator.PhoneNumberValidator;
 import com.project.alert.makeAlert;
@@ -99,6 +100,12 @@ public class AddStudentController implements Initializable {
         if(PhoneNumberValidator.validatePhoneNumber(phoneNumber.getText()) == false){
             makeAlert.showMessageAlert("Invalid phone number!");
             logger.warning("Invalid phone number");
+            return false;
+        }
+
+        if (AddressValidator.isValid(address.getText())==false) {
+            makeAlert.showMessageAlert("Invalid address! A valid address starts with 'St'!");
+            logger.warning("Invalid address");
             return false;
         }
         return true;
