@@ -1,5 +1,6 @@
 package com.project.ui.addstudent;
 
+import com.project.Validator.NameValidator;
 import com.project.alert.makeAlert;
 import com.project.service.StudentServiceImpl;
 import com.project.ui.addlibrarian.AddLibrarianController;
@@ -12,7 +13,6 @@ import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 
 import java.net.URL;
 import java.text.ParseException;
@@ -59,24 +59,39 @@ public class AddStudentController implements Initializable {
     }
 
     public void addStudent(ActionEvent actionEvent) throws ParseException {
-
-        if (sid.getText().isEmpty() || studentName.getText().isEmpty() || phoneNumber.getText().isEmpty()
-                || address.getText().isEmpty() || email.getText().isEmpty()) {
-            makeAlert.showMessageAlert("Please fill all fields!");
-            logger.warning("Not all fields were completed!");
-        }
-        if (emailValidator.isValid(email.getText())) {
-            studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
-        }
+        if(validateStudent())
+         studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
         else{
-            makeAlert.showMessageAlert("Invalid email address");
-            logger.warning("Invalid email address");
+          logger.warning("Trying to insert an invalid student!");
         }
     }
+
     public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) mainController.getScene().getWindow();
         logger.info("Closing stage");
         stage.close();
     }
 
+    public boolean validateStudent() {
+
+        if (sid.getText().isEmpty() || studentName.getText().isEmpty() || phoneNumber.getText().isEmpty()
+                || address.getText().isEmpty() || email.getText().isEmpty()) {
+            makeAlert.showMessageAlert("Please fill all fields!");
+            logger.warning("Not all fields were completed!");
+            return false;
+        }
+
+        if (emailValidator.isValid(email.getText()) == false) {
+            makeAlert.showMessageAlert("Invalid email address");
+            logger.warning("Invalid email address");
+            return false;
+        }
+
+        if (NameValidator.isValid(studentName.getText()) == false) {
+            makeAlert.showMessageAlert("Invalid student name");
+            logger.warning("Invalid student name");
+            return false;
+        }
+        return true;
+    }
 }
