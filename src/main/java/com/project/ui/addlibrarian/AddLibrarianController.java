@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -47,17 +48,22 @@ public class AddLibrarianController {
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     UserAccountServiceImpl userAccountService = (UserAccountServiceImpl) context.getBean(UserAccountServiceImpl.class);
     LibrarianServiceImpl librarianService = (LibrarianServiceImpl) context.getBean(LibrarianServiceImpl.class);
+    EmailValidator emailValidator = EmailValidator.getInstance();
 
     public void addLibrarian(ActionEvent actionEvent) {
         if (librarianName.getText().isEmpty() || address.getText().isEmpty() || phoneNumber.getText().isEmpty() || email.getText().isEmpty()
                 || username.getText().isEmpty() || password.getText().isEmpty()) {
             makeAlert.showMessageAlert("Please fill all fields!");
             logger.warning("Not all fields were completed!");
-        } else {
-
-            librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
-                    userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
-
+        }
+        if(emailValidator.isValid(email.getText()))
+        librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
+                userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
+        else
+        {
+            makeAlert.showMessageAlert("Invalid email address");
+            logger.warning("Invalid email adress");
         }
     }
+
 }

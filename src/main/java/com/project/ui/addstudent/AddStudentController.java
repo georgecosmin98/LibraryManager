@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -50,7 +51,7 @@ public class AddStudentController implements Initializable {
 
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     StudentServiceImpl studentService = (StudentServiceImpl) context.getBean(StudentServiceImpl.class);
-
+    EmailValidator emailValidator = EmailValidator.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,16 +61,18 @@ public class AddStudentController implements Initializable {
     public void addStudent(ActionEvent actionEvent) throws ParseException {
 
         if (sid.getText().isEmpty() || studentName.getText().isEmpty() || phoneNumber.getText().isEmpty()
-                || address.getText().isEmpty() || email.getText().isEmpty() ) {
+                || address.getText().isEmpty() || email.getText().isEmpty()) {
             makeAlert.showMessageAlert("Please fill all fields!");
             logger.warning("Not all fields were completed!");
-            return;
         }
-
-        studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
-        return;
+        if (emailValidator.isValid(email.getText())) {
+            studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
+        }
+        else{
+            makeAlert.showMessageAlert("Invalid email address");
+            logger.warning("Invalid email address");
+        }
     }
-
     public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) mainController.getScene().getWindow();
         logger.info("Closing stage");
