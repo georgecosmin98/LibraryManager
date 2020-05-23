@@ -78,9 +78,11 @@
 
 .list-view .list-cell:even {
 -fx-background-color: -fx-textFieldColor;
+-fx-text-fill: -fx-buttonTextColor;
 }
 .list-view .list-cell:odd {
 -fx-background-color: -fx-primary;
+-fx-text-fill: -fx-buttonTextColor;
 }
 
 

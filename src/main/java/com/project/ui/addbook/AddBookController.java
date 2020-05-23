@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.ISBNValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -65,7 +66,7 @@ public class AddBookController implements Initializable {
     ApplicationContext context = new ClassPathXmlApplicationContext("library_application_context.xml");
     BookServiceImpl bookService = (BookServiceImpl) context.getBean(BookServiceImpl.class);
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-
+    ISBNValidator isbnValidator = new ISBNValidator();
     @FXML
     void initialize() {
     }
@@ -82,8 +83,13 @@ public class AddBookController implements Initializable {
             logger.warning("Not all fields were completed!");
             return;
         }
-        String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
+        if (isbnValidator.isValid(isbn.getText())) {
+            String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
+        } else {
+            makeAlert.showMessageAlert("ISBN INVALID!");
+            logger.warning("ISBN INVALID");
+        }
     }
 
 
