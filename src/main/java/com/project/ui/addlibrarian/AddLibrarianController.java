@@ -1,6 +1,7 @@
 package com.project.ui.addlibrarian;
 
 import com.project.Validator.NameValidator;
+import com.project.Validator.PhoneNumberValidator;
 import com.project.alert.makeAlert;
 import com.project.model.TypeOfUser;
 import com.project.service.LibrarianServiceImpl;
@@ -55,6 +56,7 @@ public class AddLibrarianController {
         if (validateLibrarian()) {
             librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
                     userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
+            makeAlert.showMessageAlert("Add librarian succesfully!");
 
         }
     }
@@ -77,6 +79,12 @@ public class AddLibrarianController {
         if (NameValidator.isValid(librarianName.getText()) == false) {
             makeAlert.showMessageAlert("Invalid librarian name");
             logger.warning("Invalid librarian name");
+            return false;
+        }
+
+        if(PhoneNumberValidator.validatePhoneNumber(phoneNumber.getText()) == false){
+            makeAlert.showMessageAlert("Invalid phone number!");
+            logger.warning("Invalid phone number");
             return false;
         }
         return true;

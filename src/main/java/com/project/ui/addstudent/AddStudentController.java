@@ -1,6 +1,7 @@
 package com.project.ui.addstudent;
 
 import com.project.Validator.NameValidator;
+import com.project.Validator.PhoneNumberValidator;
 import com.project.alert.makeAlert;
 import com.project.service.StudentServiceImpl;
 import com.project.ui.addlibrarian.AddLibrarianController;
@@ -59,9 +60,11 @@ public class AddStudentController implements Initializable {
     }
 
     public void addStudent(ActionEvent actionEvent) throws ParseException {
-        if(validateStudent())
-         studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
-        else{
+        if(validateStudent()) {
+            studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
+            makeAlert.showMessageAlert("Add student succesfully!");
+        }
+         else{
           logger.warning("Trying to insert an invalid student!");
         }
     }
@@ -90,6 +93,12 @@ public class AddStudentController implements Initializable {
         if (NameValidator.isValid(studentName.getText()) == false) {
             makeAlert.showMessageAlert("Invalid student name");
             logger.warning("Invalid student name");
+            return false;
+        }
+
+        if(PhoneNumberValidator.validatePhoneNumber(phoneNumber.getText()) == false){
+            makeAlert.showMessageAlert("Invalid phone number!");
+            logger.warning("Invalid phone number");
             return false;
         }
         return true;
