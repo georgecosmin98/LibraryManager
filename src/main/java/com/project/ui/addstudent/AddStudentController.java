@@ -65,6 +65,7 @@ public class AddStudentController implements Initializable {
             studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
             makeAlert.showConfirmationMessage("Add student succesfully!");
             logger.info("Student succesfully added into database!");
+            close(actionEvent);
         }
     }
 
@@ -108,4 +109,5 @@ public class AddStudentController implements Initializable {
         }
         return true;
     }
+
 }
