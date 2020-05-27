@@ -71,7 +71,8 @@ public class DeleteStudentController implements Initializable {
         try {
             if(bookBorrowService.getBookBorrowRepository().searchBookBySID(studentSid.getText()).isEmpty()){
                 studentService.deleteStudent(studentSid.getText());
-                makeAlert.showConfirmationMessage("Student succesfully deleted from database!");
+                makeAlert.showConfirmationMessage("Student succesfully deleted!");
+                logger.info("Student succesfully deleted from database!");
             }
             else
             {

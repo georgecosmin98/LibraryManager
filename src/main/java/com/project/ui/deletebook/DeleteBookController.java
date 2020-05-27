@@ -45,9 +45,11 @@ public class DeleteBookController implements Initializable {
 
     public void deleteBook(ActionEvent actionEvent) {
         try {
-            if (bookService.getBookRepository().searchBookByISBN(ISBN.getText()).getStatus().equals(BookStatus.AVAILABLE))
+            if (bookService.getBookRepository().searchBookByISBN(ISBN.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
                 bookService.getBookRepository().deleteBook(bookService.getBookRepository().searchBookByISBN(ISBN.getText()).getTitle());
-            else {
+                makeAlert.showConfirmationMessage("Book succefully deleted!");
+                logger.info("Book succefully deleted from database!");
+            } else {
                 makeAlert.showMessageAlert("This book is not available, please check if ISBN is correct or if this book has been returned!");
                 logger.warning("This book is not available, please check if ISBN is correct or if this book has been returned!");
             }

@@ -188,6 +188,7 @@ public class MainController implements Initializable {
         if (bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
             bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date), BookBorrowStatus.ISSUED);
             bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
+            resetInfo();
             makeAlert.showConfirmationMessage("Book succesfully issued!");
             logger.info("Book succesfully issued!");
         } else {
@@ -199,7 +200,7 @@ public class MainController implements Initializable {
     public void returnBook(ActionEvent actionEvent) {
 
         if (bookService.getBookRepository().searchBookByISBN(isbnSubmission.getText()).getStatus().equals(BookStatus.NOTAVAILABLE)) {
-            long fineAmmount = bookBorrowService.fine(bookISBNinput.getText());
+            long fineAmmount = bookBorrowService.fine(isbnSubmission.getText());
             if (fineAmmount > 0) {
                 makeAlert.showMessageAlert("You must pay a fine of: " + fineAmmount);
                 logger.info("Pay fine");
@@ -224,6 +225,7 @@ public class MainController implements Initializable {
 
             if (bookBorrowEntity.getStatus().equals(BookBorrowStatus.ISSUED)) {
                 issueData.add("Issue Date and Time: " + bookBorrowEntity.getLoanDate());
+                issueData.add("Submission Date and Time: " + bookBorrowEntity.getSubmissionDate());
                 issueData.add("Book Information: ");
                 issueData.add("Book Title: " + bookEntity.getTitle());
                 issueData.add("Book Author: " + bookEntity.getBookAuthor());
@@ -240,6 +242,19 @@ public class MainController implements Initializable {
             makeAlert.showMessageAlert("This book is not borrowed or do not exist into database!");
             logger.info("Book do not exist or is not borrowed");
         }
+    }
+
+    public void resetInfo(){
+        bookName.setText("Book Name");
+        bookAuthor.setText("Book Author");
+        status.setText("Status");
+        studentName.setText("Student Name");
+        phoneNumber.setText("Phone Numebr");
+        Email.setText("Email");
+
+        bookISBNinput.clear();
+        studentIDinput.clear();
+        submissionDate.setValue(null);
     }
 
     public void logOut(ActionEvent actionEvent) {
