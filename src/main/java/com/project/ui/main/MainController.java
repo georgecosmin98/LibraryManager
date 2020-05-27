@@ -188,7 +188,7 @@ public class MainController implements Initializable {
         if (bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
             bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date), BookBorrowStatus.ISSUED);
             bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
-            resetInfo();
+            resetInfoInBookIssue();
             makeAlert.showConfirmationMessage("Book succesfully issued!");
             logger.info("Book succesfully issued!");
         } else {
@@ -209,6 +209,7 @@ public class MainController implements Initializable {
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
             makeAlert.showConfirmationMessage("Book succesfully returned!");
             logger.info("Book succesfully returned!");
+            resetInfoInBookSubmission();
         } else {
             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
             logger.info("Trying to return an invalid book or already returned");
@@ -244,7 +245,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void resetInfo(){
+    public void resetInfoInBookIssue(){
         bookName.setText("Book Name");
         bookAuthor.setText("Book Author");
         status.setText("Status");
@@ -255,6 +256,11 @@ public class MainController implements Initializable {
         bookISBNinput.clear();
         studentIDinput.clear();
         submissionDate.setValue(null);
+    }
+
+    public void resetInfoInBookSubmission(){
+        isbnSubmission.clear();
+        listSubmissionView.getItems().clear();
     }
 
     public void logOut(ActionEvent actionEvent) {
