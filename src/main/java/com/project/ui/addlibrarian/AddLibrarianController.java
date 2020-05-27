@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -39,6 +41,9 @@ public class AddLibrarianController {
     @FXML
     private Button addButton;
 
+    @FXML
+    private AnchorPane mainController;
+
     private static Logger logger;
 
     static {
@@ -57,9 +62,10 @@ public class AddLibrarianController {
         if (validateLibrarian()) {
             librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
                     userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
+            resetTextBox();
             makeAlert.showConfirmationMessage("Librarian succesfully added!");
             logger.info("Librarian succesfully added into database");
-
+            close(actionEvent);
         }
     }
 
@@ -90,11 +96,26 @@ public class AddLibrarianController {
             return false;
         }
 
-        if (AddressValidator.isValid(address.getText())==false) {
+        if (AddressValidator.isValid(address.getText()) == false) {
             makeAlert.showMessageAlert("Invalid address! A valid address starts with 'St'!");
             logger.warning("Invalid address");
             return false;
         }
         return true;
+    }
+
+    public void resetTextBox() {
+        librarianName.clear();
+        address.clear();
+        phoneNumber.clear();
+        email.clear();
+        username.clear();
+        password.clear();
+    }
+
+    public void close(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage!");
+        stage.close();
     }
 }
