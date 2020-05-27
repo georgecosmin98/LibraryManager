@@ -1,6 +1,5 @@
 package com.project.ui.deletelibrarian;
 
-import com.project.alert.makeAlert;
 import com.project.model.LibrarianEntity;
 import com.project.service.LibrarianServiceImpl;
 import javafx.collections.FXCollections;
@@ -50,8 +49,6 @@ public class DeleteLibrarianController implements Initializable {
     public void deleteLibrarian(ActionEvent actionEvent) {
         try {
             librarianService.deleteLibrarian(librarianName.getText());
-            makeAlert.showConfirmationMessage("Librarian succesfully deleted!");
-            logger.info("Librarian succesfully deleted from database!");
             close(actionEvent);
         } catch (Exception ex) {
             logger.warning("This user do not exist into database!");
