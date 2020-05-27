@@ -11,4 +11,11 @@ public class makeAlert {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public static void showConfirmationMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

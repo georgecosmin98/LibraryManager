@@ -68,9 +68,10 @@ public class DeleteStudentController implements Initializable {
 
     public void deleteStudent(ActionEvent actionEvent) {
 
-        try {//nu e bine!!!
+        try {
             if(bookBorrowService.getBookBorrowRepository().searchBookBySID(studentSid.getText()).isEmpty()){
                 studentService.deleteStudent(studentSid.getText());
+                makeAlert.showConfirmationMessage("Student succesfully deleted from database!");
             }
             else
             {

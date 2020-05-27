@@ -63,10 +63,8 @@ public class AddStudentController implements Initializable {
     public void addStudent(ActionEvent actionEvent) throws ParseException {
         if(validateStudent()) {
             studentService.createStudent(sid.getText(), studentName.getText(), phoneNumber.getText(), address.getText(), email.getText());
-            makeAlert.showMessageAlert("Add student succesfully!");
-        }
-         else{
-          logger.warning("Trying to insert an invalid student!");
+            makeAlert.showConfirmationMessage("Add student succesfully!");
+            logger.info("Student succesfully added into database!");
         }
     }
 

@@ -188,7 +188,8 @@ public class MainController implements Initializable {
         if (bookService.getBookRepository().searchBookByISBN(bookISBNinput.getText()).getStatus().equals(BookStatus.AVAILABLE)) {
             bookBorrowService.createBookBorrow(studentIDinput.getText(), bookISBNinput.getText(), ft.parse(ft.format(new Date())), ft.parse(date), BookBorrowStatus.ISSUED);
             bookService.updateBookStatus(bookISBNinput.getText(), BookStatus.NOTAVAILABLE);
-
+            makeAlert.showConfirmationMessage("Book succesfully issued!");
+            logger.info("Book succesfully issued!");
         } else {
             makeAlert.showMessageAlert("This book is not available!");
             logger.warning("This book is not available");
@@ -205,7 +206,8 @@ public class MainController implements Initializable {
             }
             bookService.updateBookStatus(isbnSubmission.getText(), BookStatus.AVAILABLE);
             bookBorrowService.updateBookBorrowStatus(isbnSubmission.getText(), BookBorrowStatus.RETURNED);
-
+            makeAlert.showConfirmationMessage("Book succesfully returned!");
+            logger.info("Book succesfully returned!");
         } else {
             makeAlert.showMessageAlert("This book is already returned or not exist in database, please check if ISBN is correct write!");
             logger.info("Trying to return an invalid book or already returned");

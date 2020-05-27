@@ -57,7 +57,8 @@ public class AddLibrarianController {
         if (validateLibrarian()) {
             librarianService.createLibrarian(librarianName.getText(), phoneNumber.getText(), address.getText(), email.getText(),
                     userAccountService.createUser(username.getText(), password.getText(), TypeOfUser.LIBRARIAN));
-            makeAlert.showMessageAlert("Add librarian succesfully!");
+            makeAlert.showConfirmationMessage("Librarian succesfully added!");
+            logger.info("Librarian succesfully added into database");
 
         }
     }

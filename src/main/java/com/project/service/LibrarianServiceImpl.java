@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.alert.makeAlert;
 import com.project.model.LibrarianEntity;
 import com.project.model.UserAccountEntity;
 import com.project.repository.api.LibrarianRepository;
@@ -45,6 +46,7 @@ public class LibrarianServiceImpl {
         librarianRepository.deleteLibrarian(deleteLibrarian.getLibrarianName());
         logger.info("Deleting user account from database");
         userAccountRepository.deleteUserAccount(deleteLibrarian.getUserAccountEntity().getId());
+        makeAlert.showConfirmationMessage("Librarian succesfully deleted from database!");
     }
     public LibrarianRepository getLibrarianRepository() {
         return librarianRepository;
