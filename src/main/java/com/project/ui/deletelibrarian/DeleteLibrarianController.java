@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,6 +26,9 @@ public class DeleteLibrarianController implements Initializable {
 
     @FXML
     private ListView<String> listView;
+
+    @FXML
+    private AnchorPane mainController;
 
     private static Logger logger;
 
@@ -47,6 +52,7 @@ public class DeleteLibrarianController implements Initializable {
             librarianService.deleteLibrarian(librarianName.getText());
             makeAlert.showConfirmationMessage("Librarian succesfully deleted!");
             logger.info("Librarian succesfully deleted from database!");
+            close(actionEvent);
         } catch (Exception ex) {
             logger.warning("This user do not exist into database!");
         }
@@ -67,5 +73,11 @@ public class DeleteLibrarianController implements Initializable {
         } catch (NoResultException ex) {
            logger.warning("This name do not exist into database!");
         }
+    }
+
+    public void close(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage!");
+        stage.close();
     }
 }
