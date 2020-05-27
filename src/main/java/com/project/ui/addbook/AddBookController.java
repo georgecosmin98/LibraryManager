@@ -86,6 +86,7 @@ public class AddBookController implements Initializable {
             resetTextBox();
             makeAlert.showConfirmationMessage("Book succesfully added!");
             logger.info("Book succesfully added into database");
+            close(actionEvent);
         }
     }
 
