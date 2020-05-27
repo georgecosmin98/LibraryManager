@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -30,6 +32,9 @@ public class DeleteStudentController implements Initializable {
 
     @FXML
     private ListView<String> listView;
+
+    @FXML
+    private AnchorPane mainController;
 
     private static Logger logger;
 
@@ -73,6 +78,7 @@ public class DeleteStudentController implements Initializable {
                 studentService.deleteStudent(studentSid.getText());
                 makeAlert.showConfirmationMessage("Student succesfully deleted!");
                 logger.info("Student succesfully deleted from database!");
+                close(actionEvent);
             }
             else
             {
@@ -83,5 +89,11 @@ public class DeleteStudentController implements Initializable {
             logger.warning("This student do not exist");
             makeAlert.showMessageAlert("This student do not exist");
         }
+    }
+
+    public void close(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage!");
+        stage.close();
     }
 }
