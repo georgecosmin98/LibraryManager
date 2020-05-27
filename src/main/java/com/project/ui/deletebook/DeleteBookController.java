@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,6 +29,9 @@ public class DeleteBookController implements Initializable {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private AnchorPane mainController;
 
     @FXML
     private ListView<String> listView;
@@ -49,6 +54,7 @@ public class DeleteBookController implements Initializable {
                 bookService.getBookRepository().deleteBook(bookService.getBookRepository().searchBookByISBN(ISBN.getText()).getTitle());
                 makeAlert.showConfirmationMessage("Book succefully deleted!");
                 logger.info("Book succefully deleted from database!");
+                close(actionEvent);
             } else {
                 makeAlert.showMessageAlert("This book is not available, please check if ISBN is correct or if this book has been returned!");
                 logger.warning("This book is not available, please check if ISBN is correct or if this book has been returned!");
@@ -78,6 +84,11 @@ public class DeleteBookController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
 
+    public void close(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainController.getScene().getWindow();
+        logger.info("Closing stage!");
+        stage.close();
     }
 }
