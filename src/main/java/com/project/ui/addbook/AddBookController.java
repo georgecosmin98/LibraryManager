@@ -83,6 +83,7 @@ public class AddBookController implements Initializable {
         if (validateBook()) {
             String date = data.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             bookService.createBook(isbn.getText(), title.getText(), bookauthor.getText(), ft.parse(date), BookStatus.AVAILABLE);
+            resetTextBox();
             makeAlert.showConfirmationMessage("Book succesfully added!");
             logger.info("Book succesfully added into database");
         }
@@ -108,6 +109,13 @@ public class AddBookController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    public void resetTextBox(){
+        isbn.clear();
+        title.clear();
+        bookauthor.clear();
+        data.setValue(null);
     }
 
     public void close(ActionEvent actionEvent) {
