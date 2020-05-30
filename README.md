@@ -28,7 +28,10 @@ Limbaje folosite
   Java:     
   
 	Hibernate                 				- Manipulare si lucru cu baza de date
-	Spring                    				- Managementul de dependinte
-	JUnit5     	          				- Testare
- 	OracleDB/PostgreSQL/MongoDB(Inca nu sunt hotarat)       - Baza de date
+	Maven                   				- Managementul de dependinte
+	Spring							- IoC + Dependency Injection
+	JUnit+Mockito     	          			- Testare unitara
+ 	PostgreSQL      					- Baza de date
 	JavaFX(SceneBuilder)					- GUI
+	Apache Commons Codec/DigestUtils			- Secure Hash Algorithm
+	Apache Commons Validators				- Validare ISBN, EMAIL
