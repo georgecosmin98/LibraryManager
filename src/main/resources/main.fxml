@@ -4,9 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -20,34 +17,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="mainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" stylesheets="@dark_skinmain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.main.MainController">
+<StackPane fx:id="mainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1200.0" stylesheets="@dark_skinmain.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.ui.main.MainController">
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="900.0" styleClass="BorderPane">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
          <left>
             <VBox prefHeight="500.0" prefWidth="170.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#addBook" prefHeight="80.0" prefWidth="170.0" text="Add Book ">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#addBook" prefHeight="82.0" prefWidth="170.0" text="Add Book ">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,7 +35,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="addstudent" contentDisplay="TOP" layoutX="10.0" layoutY="68.0" mnemonicParsing="false" onAction="#addstudent" prefHeight="80.0" prefWidth="170.0" text="Add Student">
+                  <Button fx:id="addstudent" contentDisplay="TOP" layoutX="10.0" layoutY="68.0" mnemonicParsing="false" onAction="#addstudent" prefHeight="82.0" prefWidth="170.0" text="Add Student">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,7 +47,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="listbook" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#listbook" prefHeight="80.0" prefWidth="170.0" text="List Books">
+                  <Button fx:id="listbook" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#listbook" prefHeight="82.0" prefWidth="170.0" text="List Books">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -83,7 +59,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="liststudent" contentDisplay="TOP" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#liststudent" prefHeight="80.0" prefWidth="170.0" text="List Students">
+                  <Button fx:id="liststudent" contentDisplay="TOP" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#liststudent" prefHeight="82.0" prefWidth="170.0" text="List Students">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,7 +71,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="listBorrowBook" contentDisplay="TOP" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" onAction="#listBorrowBook" prefHeight="80.0" prefWidth="170.0" text="List Issue Books">
+                  <Button fx:id="listBorrowBook" contentDisplay="TOP" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" onAction="#listBorrowBook" prefHeight="82.0" prefWidth="170.0" text="List Issue Books">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -107,7 +83,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="deleteBookButton" contentDisplay="TOP" layoutX="10.0" layoutY="244.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="80.0" prefWidth="170.0" text="Delete Book">
+                  <Button fx:id="deleteBookButton" contentDisplay="TOP" layoutX="10.0" layoutY="244.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="82.0" prefWidth="170.0" text="Delete Book">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -119,7 +95,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="deleteStudentButton" contentDisplay="TOP" layoutX="10.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="80.0" prefWidth="170.0" text="Delete Student">
+                  <Button fx:id="deleteStudentButton" contentDisplay="TOP" layoutX="10.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="82.0" prefWidth="170.0" text="Delete Student">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -131,7 +107,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="settingsButton" contentDisplay="TOP" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onAction="#settings" prefHeight="80.0" prefWidth="170.0" text="Settings">
+                  <Button fx:id="settingsButton" contentDisplay="TOP" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onAction="#settings" prefHeight="82.0" prefWidth="170.0" text="Settings">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -143,7 +119,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="logOutButton" contentDisplay="TOP" layoutX="10.0" layoutY="536.0" mnemonicParsing="false" onAction="#logOut" prefHeight="80.0" prefWidth="170.0" text="Log Out">
+                  <Button fx:id="logOutButton" contentDisplay="TOP" layoutX="10.0" layoutY="536.0" mnemonicParsing="false" onAction="#logOut" prefHeight="82.0" prefWidth="170.0" text="Log Out">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -156,6 +132,9 @@
                      </font>
                   </Button>
                </children>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
             </VBox>
          </left>
          <center>
@@ -316,6 +295,12 @@
                   </content>
                 </Tab>
               </tabs>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
             </TabPane>
          </center>
       </BorderPane>
