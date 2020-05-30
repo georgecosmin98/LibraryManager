@@ -28,7 +28,8 @@ Limbaje folosite
   Java:     
   
 	Hibernate                 				- Manipulare si lucru cu baza de date
-	Spring                    				- Managementul de dependinte
+	Maven                   				- Managementul de dependinte
+	Spring							- IoC + Dependency Injection
 	JUnit+Mockito     	          			- Testare unitara
  	PostgreSQL      					- Baza de date
 	JavaFX(SceneBuilder)					- GUI
